@@ -1,32 +1,43 @@
-export const onSelection = async () => {
-  const entries = await Promise.all(
-    figma.currentPage.selection.map(async (node) => {
-      const bytes = await node.exportAsync({
-        format: "SVG",
-        contentsOnly: true,
-        suffix: "",
-        svgIdAttribute: false,
-        svgOutlineText: true,
-        svgSimplifyStroke: true,
-      });
+import debounce from "lodash/debounce";
 
-      const svg = bytes.reduce(
-        (str, byte) => str + String.fromCharCode(byte),
-        ""
-      );
+export const onSelection = debounce(
+  async () => {
+    console.log("onSelection");
+    const entries = await Promise.all(
+      figma.currentPage.selection.map(async (node) => {
+        const bytes = await node.exportAsync({
+          format: "SVG",
+          contentsOnly: true,
+          suffix: "",
+          svgIdAttribute: false,
+          svgOutlineText: true,
+          svgSimplifyStroke: true,
+        });
 
-      return {
-        id: node.id,
-        name: node.name,
-        width: node.width,
-        height: node.height,
-        svg,
-      };
-    })
-  );
+        const svg = bytes.reduce(
+          (str, byte) => str + String.fromCharCode(byte),
+          ""
+        );
 
-  figma.ui.postMessage({
-    type: "selectionChange",
-    entries,
-  });
-};
+        return {
+          id: node.id,
+          name: node.name,
+          width: node.width,
+          height: node.height,
+          svg,
+        };
+      })
+    );
+
+    figma.ui.postMessage({
+      type: "selectionChange",
+      entries,
+    });
+  },
+  500,
+  {
+    trailing: true,
+    leading: true,
+    maxWait: 500,
+  }
+);
