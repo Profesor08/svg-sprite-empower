@@ -1,62 +1,46 @@
 <style>
   :root {
-    --blue: #18a0fb;
-    --purple: #7b61ff;
-    --hot-pink: #ff00ff;
-    --green: #1bc47d;
-    --red: #f24822;
-    --yellow: #ffeb00;
-    --black: #000000;
-    --black8: rgba(0, 0, 0, .8);
-    --black8-opaque: #333333;
-    --black3: rgba(0, 0, 0, .3);
-    --black3-opaque: #B3B3B3;
-    --white: #ffffff;
-    --white8: rgba(255, 255, 255, .8);
-    --white4: rgba(255, 255, 255, .4);
-    --grey: #f0f0f0;
-    --silver: #e5e5e5;
-    --hud: #222222;
-    --toolbar: #2c2c2c;
-    --black1: rgba(0, 0, 0, .1);
-    --blue3: rgba(24, 145, 251, .3);
-    --purple4: rgba(123, 97, 255, .4);
-    --hover-fill: rgba(0, 0, 0, .06);
-    --selection-a: #daebf7;
-    --selection-b: #edf5fa;
-    --white2: rgba(255, 255, 255, .2);
-    --font-stack: "Inter", sans-serif;
-    --font-size-xsmall: 11px;
-    --font-size-small: 12px;
-    --font-size-large: 13px;
-    --font-size-xlarge: 14px;
+    --primary: #333333;
+    --secondary: #b3b3b3;
+    --accent: #18a0fb;
+
+    --input-bg: #ffffff;
+
+    --border: #e6e6e6;
+
+    --font-size-sm: 11px;
+    --font-size-md: 12px;
+    --font-size-lg: 13px;
+
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-bold: 600;
-    --font-line-height: 16px;
-    --font-line-height-large: 24px;
-    --font-letter-spacing-pos-xsmall: .005em;
-    --font-letter-spacing-neg-xsmall: .01em;
-    --font-letter-spacing-pos-small: 0;
-    --font-letter-spacing-neg-small: .005em;
-    --font-letter-spacing-pos-large: -.0025em;
-    --font-letter-spacing-neg-large: .0025em;
-    --font-letter-spacing-pos-xlarge: -.001em;
-    --font-letter-spacing-neg-xlarge: -.001em;
-    --border-radius-small: 2px;
-    --border-radius-med: 5px;
-    --border-radius-large: 6px;
-    --shadow-hud: 0 5px 17px rgba(0, 0, 0, .2), 0 2px 7px rgba(0, 0, 0, .15);
-    --shadow-floating-window: 0 2px 14px rgba(0, 0, 0, .15);
-    --size-xxxsmall: 4px;
-    --size-xxsmall: 8px;
-    --size-xsmall: 16px;
-    --size-small: 24px;
-    --size-medium: 32px;
-    --size-large: 40px;
-    --size-xlarge: 48px;
-    --size-xxlarge: 64px;
-    --size-xxxlarge: 80px;
+
+    --letter-spacing-sm: .005em;
+    --letter-spacing-md: .01em;
+
+    --size-sm: 4px;
+    --size-md: 8px;
+    --size-lg: 16px;
+    --size-xl: 24px;
+    --size-xxl: 28px;
+
+    --radius-sm: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: var(--accent);
   }
 
   @font-face {
@@ -88,6 +72,7 @@
     padding: 0;
     overflow-y: auto;
     font-family: "Inter", sans-serif;
+    color: var(--primary);
   }
 
   body,
@@ -97,9 +82,9 @@
 
   section {
     display: grid;
-    gap: 4px;
+    gap: var(--size-sm);
     margin: 0;
-    padding: 8px;
+    padding: var(--size-md) var(--size-md);
   }
 
   section>* {
@@ -109,28 +94,28 @@
 
   footer {
     font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-xsmall);
-    color: var(--black3);
-    padding: var(--size-xsmall) var(--size-xxsmall);
+    font-size: var(--font-size-sm);
+    color: var(--secondary);
+    padding: var(--size-lg) var(--size-md);
   }
 
   a {
-    color: var(--blue);
+    color: var(--accent);
   }
 
   select,
   input,
   textarea {
     width: 100%;
-    padding: 0 var(--size-xxsmall);
+    padding: 0 var(--size-md);
     border: 0;
     font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-xsmall);
-    letter-spacing: var(--font-letter-spacing-neg-xsmall);
-    color: var(--black8);
-    background-color: var(--white);
-    border-radius: var(--border-radius-small);
-    border: 1px solid var(--black1);
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-sm);
+    color: var(--primary);
+    background-color: var(--input-bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
     appearance: none;
     outline: none;
   }
@@ -141,30 +126,58 @@
   }
 
   textarea {
-    padding: var(--size-xxsmall);
+    padding: var(--size-md);
     width: 100%;
     resize: none;
     white-space: pre;
     outline: none;
   }
 
-  select:hover:not(:disabled),
-  textarea:hover:not(:disabled),
-  input:hover:not(:disabled) {
-    border: 1px solid var(--blue);
+  select:hover,
+  textarea:hover,
+  input:hover {
+    border: 1px solid var(--accent);
   }
 
-  select:focus:not(:disabled),
-  input:focus:not(:disabled),
-  textarea:focus:not(:disabled) {
-    outline: 1px solid var(--blue);
+  select:focus,
+  input:focus,
+  textarea:focus {
+    border: 1px solid var(--accent);
+    outline: 1px solid var(--accent);
     outline-offset: -2px;
   }
 
   select:disabled,
   input:disabled,
   textarea:disabled {
-    opacity: 0.7;
+    border: 1px solid var(--border);
+    outline: none;
+    opacity: 0.5;
+  }
+
+  .select-box {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    width: 100%;
+  }
+
+  .select-box .select-arrow {
+    grid-row: 1;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+    pointer-events: none;
+    color: var(--secondary);
+  }
+
+  .select-box select {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    padding: 0 30px 0 var(--size-md);
+  }
+
+  .delimiter {
+    border-bottom: 1px solid var(--border);
   }
 
   .header {
@@ -172,72 +185,57 @@
     grid-auto-flow: column;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
-  }
-
-  .select-box {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    width: 100%;
-  }
-
-  .select-box .select-arrow {
-    grid-row: 1;
-    grid-column: 2;
-    width: 30px;
-    height: 30px;
-    display: block;
-    margin-top: -1px;
-    margin-left: -12px;
-    background-image: url(data:image/svg+xml;utf8,%3Csvg%20fill%3D%22none%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20width%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m15%2016.7071-3-3%20.7071-.7071%202.6465%202.6464%202.6464-2.6464.7071.7071-3%203-.3535.3536z%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E);
-    background-repeat: no-repeat;
-    background-position: center center;
-    opacity: 0.3;
-    pointer-events: none;
-  }
-
-  .select-box select {
-    grid-row: 1;
-    grid-column: 1 / -1;
-    padding: 0 30px 0 var(--size-xxsmall);
-  }
-
-  .delimiter {
-    border-bottom: 1px solid #e5e5e5;
+    gap: var(--size-lg);
+    height: var(--size-xxl);
   }
 
   .title {
-    display: flex;
-    align-items: center;
-    font-size: var(--font-size-xsmall);
+    font-size: var(--font-size-sm);
     font-weight: var(--font-weight-bold);
-    letter-spacing: var(--font-letter-spacing-pos-xsmall);
+    letter-spacing: var(--font-letter-spacing-pos-sm);
     line-height: var(--font-line-height);
-    color: var(--black8);
-    height: var(--size-medium);
+    color: var(--primary);
   }
 
   button {
-    height: var(--size-medium);
+    height: var(--size-xxl);
     background-color: transparent;
     text-decoration: none;
     border: 0;
     outline: none;
-    font-family: var(--font-stack);
     font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-xsmall);
-    line-height: var(--font-line-height);
-    letter-spacing: var(--font-letter-spacing-pos-small);
+    font-size: var(--font-size-sm);
+    letter-spacing: var(--letter-spacing-sm);
     cursor: pointer;
-    color: var(--blue);
+    color: var(--accent);
   }
 
   button:active {
     text-decoration: underline;
   }
+
+  .figma-dark {
+    --primary: #ffffff;
+    --secondary: #b3b3b3;
+    --accent: #18a0fb;
+
+    --input-bg: #444444;
+
+    --border: #444444;
+
+    color-scheme: dark;
+  }
 </style>
 
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="arrow_down_24px" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M4.88879 6.66672L7.9999 9.77783L11.111 6.66672" stroke="currentColor" stroke-width="1.5"
+      stroke-linecap="round"></path>
+  </symbol>
+</svg>
+
 <div id="app">
+
   <main>
     <section>
       <div class="header">
@@ -262,7 +260,9 @@
           <option value="override">override</option>
           <option value="remove">remove</option>
         </select>
-        <div class="select-arrow"></div>
+        <svg class="select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <use href="#arrow_down_24px"></use>
+        </svg>
       </div>
 
       <input id="customColorInput" type="input" placeholder="#000000">
@@ -410,59 +410,3 @@
   onResize();
 
 </script>
-
-<!-- <script>
-
-
-
-  const textarea = document.getElementById("textarea");
-
-  const color = document.getElementById("color");
-
-  const customColor = document.getElementById("customColor");
-
-  document.getElementById("close")?.addEventListener("click", () => {
-    parent.postMessage({ pluginMessage: { type: "close" } }, "*")
-  })
-
-  document.getElementById("copy")?.addEventListener("click", () => {
-    copy(textarea.value);
-  })
-
-  color?.addEventListener("change", () => {
-
-    console.log(color.value, color.value !== "override")
-
-    customColor.disabled = color.value !== "override";
-
-    // parent.postMessage({
-    //   pluginMessage: {
-    //     type: "onConfig",
-    //     config: {
-    //       color: color.value,
-    //     }
-    //   }
-    // }, "*");
-  });
-
-  customColor.disabled = color.value !== "override";
-
-  window.addEventListener("message", ({ data: { pluginMessage } }) => {
-    switch (pluginMessage.type) {
-      case "selectionChange": {
-        parent.postMessage({
-          pluginMessage: {
-            type: "onPretty",
-            markup: sprite(pluginMessage.entries)
-          }
-        }, "*");
-
-        break;
-      }
-      case "onPretty": textarea.value = pluginMessage.markup; break;
-    }
-  })
-
-  parent.postMessage({ pluginMessage: { type: "getSelection" } }, "*")
-
-</script> -->
