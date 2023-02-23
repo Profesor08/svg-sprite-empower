@@ -1,0 +1,24 @@
+{
+  "name": "svg-sprite-empower",
+  "version": "1.0.0",
+  "description": "Your Figma Plugin",
+  "main": "dist/code.js",
+  "scripts": {
+    "dev": "npm run build -- --watch",
+    "prebuild": "rimraf dist",
+    "build": "esbuild src/code.ts --outdir=dist --bundle"
+  },
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "@figma/plugin-typings": "*",
+    "@types/pretty": "^2.0.1",
+    "esbuild": "^0.17.10",
+    "rimraf": "^4.1.2",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "figma-plugin-ds": "^1.0.1",
+    "pretty": "^2.0.0"
+  }
+}

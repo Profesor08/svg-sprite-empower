@@ -1,0 +1,468 @@
+<style>
+  :root {
+    --blue: #18a0fb;
+    --purple: #7b61ff;
+    --hot-pink: #ff00ff;
+    --green: #1bc47d;
+    --red: #f24822;
+    --yellow: #ffeb00;
+    --black: #000000;
+    --black8: rgba(0, 0, 0, .8);
+    --black8-opaque: #333333;
+    --black3: rgba(0, 0, 0, .3);
+    --black3-opaque: #B3B3B3;
+    --white: #ffffff;
+    --white8: rgba(255, 255, 255, .8);
+    --white4: rgba(255, 255, 255, .4);
+    --grey: #f0f0f0;
+    --silver: #e5e5e5;
+    --hud: #222222;
+    --toolbar: #2c2c2c;
+    --black1: rgba(0, 0, 0, .1);
+    --blue3: rgba(24, 145, 251, .3);
+    --purple4: rgba(123, 97, 255, .4);
+    --hover-fill: rgba(0, 0, 0, .06);
+    --selection-a: #daebf7;
+    --selection-b: #edf5fa;
+    --white2: rgba(255, 255, 255, .2);
+    --font-stack: "Inter", sans-serif;
+    --font-size-xsmall: 11px;
+    --font-size-small: 12px;
+    --font-size-large: 13px;
+    --font-size-xlarge: 14px;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+    --font-line-height: 16px;
+    --font-line-height-large: 24px;
+    --font-letter-spacing-pos-xsmall: .005em;
+    --font-letter-spacing-neg-xsmall: .01em;
+    --font-letter-spacing-pos-small: 0;
+    --font-letter-spacing-neg-small: .005em;
+    --font-letter-spacing-pos-large: -.0025em;
+    --font-letter-spacing-neg-large: .0025em;
+    --font-letter-spacing-pos-xlarge: -.001em;
+    --font-letter-spacing-neg-xlarge: -.001em;
+    --border-radius-small: 2px;
+    --border-radius-med: 5px;
+    --border-radius-large: 6px;
+    --shadow-hud: 0 5px 17px rgba(0, 0, 0, .2), 0 2px 7px rgba(0, 0, 0, .15);
+    --shadow-floating-window: 0 2px 14px rgba(0, 0, 0, .15);
+    --size-xxxsmall: 4px;
+    --size-xxsmall: 8px;
+    --size-xsmall: 16px;
+    --size-small: 24px;
+    --size-medium: 32px;
+    --size-large: 40px;
+    --size-xlarge: 48px;
+    --size-xxlarge: 64px;
+    --size-xxxlarge: 80px;
+  }
+
+  @font-face {
+    font-family: "Inter";
+    font-weight: 400;
+    font-style: normal;
+    src: url("https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.7") format("woff2"),
+      url("https://rsms.me/inter/font-files/Inter-Regular.woff?v=3.7") format("woff");
+  }
+
+  @font-face {
+    font-family: "Inter";
+    font-weight: 500;
+    font-style: normal;
+    src: url("https://rsms.me/inter/font-files/Inter-Medium.woff2?v=3.7") format("woff2"),
+      url("https://rsms.me/inter/font-files/Inter-Medium.woff2?v=3.7") format("woff");
+  }
+
+  @font-face {
+    font-family: "Inter";
+    font-weight: 600;
+    font-style: normal;
+    src: url("https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=3.7") format("woff2"),
+      url("https://rsms.me/inter/font-files/Inter-SemiBold.woff2?v=3.7") format("woff");
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    font-family: "Inter", sans-serif;
+  }
+
+  body,
+  body * {
+    box-sizing: border-box;
+  }
+
+  section {
+    display: grid;
+    gap: 4px;
+    margin: 0;
+    padding: 8px;
+  }
+
+  section>* {
+    margin: 0;
+    padding: 0;
+  }
+
+  footer {
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-xsmall);
+    color: var(--black3);
+    padding: var(--size-xsmall) var(--size-xxsmall);
+  }
+
+  a {
+    color: var(--blue);
+  }
+
+  select,
+  input,
+  textarea {
+    width: 100%;
+    padding: 0 var(--size-xxsmall);
+    border: 0;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-xsmall);
+    letter-spacing: var(--font-letter-spacing-neg-xsmall);
+    color: var(--black8);
+    background-color: var(--white);
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--black1);
+    appearance: none;
+    outline: none;
+  }
+
+  select,
+  input {
+    height: 30px;
+  }
+
+  textarea {
+    padding: var(--size-xxsmall);
+    width: 100%;
+    resize: none;
+    white-space: pre;
+    outline: none;
+  }
+
+  select:hover:not(:disabled),
+  textarea:hover:not(:disabled),
+  input:hover:not(:disabled) {
+    border: 1px solid var(--blue);
+  }
+
+  select:focus:not(:disabled),
+  input:focus:not(:disabled),
+  textarea:focus:not(:disabled) {
+    outline: 1px solid var(--blue);
+    outline-offset: -2px;
+  }
+
+  select:disabled,
+  input:disabled,
+  textarea:disabled {
+    opacity: 0.7;
+  }
+
+  .header {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .select-box {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+  }
+
+  .select-box .select-arrow {
+    grid-row: 1;
+    grid-column: 2;
+    width: 30px;
+    height: 30px;
+    display: block;
+    margin-top: -1px;
+    margin-left: -12px;
+    background-image: url(data:image/svg+xml;utf8,%3Csvg%20fill%3D%22none%22%20height%3D%2230%22%20viewBox%3D%220%200%2030%2030%22%20width%3D%2230%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20clip-rule%3D%22evenodd%22%20d%3D%22m15%2016.7071-3-3%20.7071-.7071%202.6465%202.6464%202.6464-2.6464.7071.7071-3%203-.3535.3536z%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%2F%3E%3C%2Fsvg%3E);
+    background-repeat: no-repeat;
+    background-position: center center;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .select-box select {
+    grid-row: 1;
+    grid-column: 1 / -1;
+    padding: 0 30px 0 var(--size-xxsmall);
+  }
+
+  .delimiter {
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-xsmall);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--font-letter-spacing-pos-xsmall);
+    line-height: var(--font-line-height);
+    color: var(--black8);
+    height: var(--size-medium);
+  }
+
+  button {
+    height: var(--size-medium);
+    background-color: transparent;
+    text-decoration: none;
+    border: 0;
+    outline: none;
+    font-family: var(--font-stack);
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-xsmall);
+    line-height: var(--font-line-height);
+    letter-spacing: var(--font-letter-spacing-pos-small);
+    cursor: pointer;
+    color: var(--blue);
+  }
+
+  button:active {
+    text-decoration: underline;
+  }
+</style>
+
+<div id="app">
+  <main>
+    <section>
+      <div class="header">
+        <div class="title">Selection</div>
+        <button id="copyBtn">Copy</button>
+      </div>
+
+      <textarea id="outputField" rows="10"></textarea>
+    </section>
+
+    <div class="delimiter"></div>
+
+    <section>
+      <div class="header">
+        <div class="title">Color</div>
+      </div>
+
+      <div class="select-box">
+        <select id="colorSelect">
+          <option value="currentColor">currentColor</option>
+          <option value="initial">initial</option>
+          <option value="override">override</option>
+          <option value="remove">remove</option>
+        </select>
+        <div class="select-arrow"></div>
+      </div>
+
+      <input id="customColorInput" type="input" placeholder="#000000">
+    </section>
+  </main>
+
+  <div class="delimiter"></div>
+
+  <footer>
+    <span>Developed by: <a href="https://github.com/Profesor08" target="_blank">Profesor08</a></span>
+  </footer>
+</div>
+
+<script name="copy">
+  const copy = (text) => {
+    const area = document.createElement("textarea");
+
+    document.body.appendChild(area);
+
+    area.value = text;
+
+    area.focus();
+
+    area.select();
+
+    const result = document.execCommand("copy");
+
+    document.body.removeChild(area);
+  };
+</script>
+
+<script name="icon">
+  const root = document.createElement("div");
+
+  const icon = (icon) => {
+    root.innerHTML = icon.svg;
+
+    const svg = root.firstChild;
+
+    const symbol = document.createElementNS("http://www.w3.org/2000/svg", "symbol");
+
+    symbol.setAttribute("id", icon.name);
+    symbol.setAttribute("width", svg.getAttribute("width"));
+    symbol.setAttribute("height", svg.getAttribute("height"));
+    symbol.setAttribute("viewBox", svg.getAttribute("viewBox"));
+    symbol.setAttribute("fill", "none");
+
+    symbol.innerHTML = svg.innerHTML.trim();
+
+    symbol.querySelectorAll("[stroke]").forEach(entry => {
+      if (entry.getAttribute("stroke") !== "none") {
+        entry.setAttribute("stroke", "currentColor");
+      }
+    });
+
+    symbol.querySelectorAll("[fill]").forEach(entry => {
+      if (entry.getAttribute("fill") !== "none") {
+        entry.setAttribute("fill", "currentColor");
+      }
+    });
+
+    return symbol.outerHTML;
+  };
+</script>
+
+<script name="sprite">
+  const sprite = (icons) => {
+    if (icons.length === 0) {
+      return "";
+    }
+
+    const content = icons.map(icon).join(`\n\n  `);
+
+    return `<svg xmlns="http://www.w3.org/2000/svg">${content}</svg>`;
+  };
+</script>
+
+<script name="config">
+  const config = () => {
+    return {
+      color: colorSelect.value,
+      colorOverride: customColorInput.value,
+    };
+  };
+</script>
+
+<script name="onConfig">
+  const onConfig = () => {
+    parent.postMessage({
+      pluginMessage: {
+        type: "onConfig",
+        config: config(),
+      }
+    }, "*");
+  };
+</script>
+
+<script name="onResize">
+  const onResize = () => {
+    parent.postMessage({
+      pluginMessage: {
+        type: "onResize",
+        height: app.clientHeight + 1,
+      }
+    }, "*");
+  };
+</script>
+
+<script name="init">
+  copyBtn.addEventListener("click", () => copy(outputField.value));
+  colorSelect.addEventListener("change", () => {
+    customColorInput.disabled = colorSelect.value !== "override";
+    onConfig();
+  });
+  customColorInput.addEventListener("change", onConfig);
+  customColorInput.disabled = colorSelect.value !== "override";
+
+  window.addEventListener("message", ({ data: { pluginMessage } }) => {
+    if (pluginMessage.type === "onConfig") {
+      colorSelect.value = pluginMessage.config.color;
+      customColorInput.value = pluginMessage.config.colorOverride;
+      customColorInput.disabled = colorSelect.value !== "override";
+    }
+  })
+
+  window.addEventListener("message", ({ data: { pluginMessage } }) => {
+    if (pluginMessage.type === "selectionChange") {
+      parent.postMessage({
+        pluginMessage: {
+          type: "onPretty",
+          markup: sprite(pluginMessage.entries)
+        }
+      }, "*");
+    }
+  })
+
+  window.addEventListener("message", ({ data: { pluginMessage } }) => {
+    if (pluginMessage.type === "onPretty") {
+      outputField.value = pluginMessage.markup;
+    }
+  })
+
+  parent.postMessage({ pluginMessage: { type: "getSelection" } }, "*")
+
+  onResize();
+
+</script>
+
+<!-- <script>
+
+
+
+  const textarea = document.getElementById("textarea");
+
+  const color = document.getElementById("color");
+
+  const customColor = document.getElementById("customColor");
+
+  document.getElementById("close")?.addEventListener("click", () => {
+    parent.postMessage({ pluginMessage: { type: "close" } }, "*")
+  })
+
+  document.getElementById("copy")?.addEventListener("click", () => {
+    copy(textarea.value);
+  })
+
+  color?.addEventListener("change", () => {
+
+    console.log(color.value, color.value !== "override")
+
+    customColor.disabled = color.value !== "override";
+
+    // parent.postMessage({
+    //   pluginMessage: {
+    //     type: "onConfig",
+    //     config: {
+    //       color: color.value,
+    //     }
+    //   }
+    // }, "*");
+  });
+
+  customColor.disabled = color.value !== "override";
+
+  window.addEventListener("message", ({ data: { pluginMessage } }) => {
+    switch (pluginMessage.type) {
+      case "selectionChange": {
+        parent.postMessage({
+          pluginMessage: {
+            type: "onPretty",
+            markup: sprite(pluginMessage.entries)
+          }
+        }, "*");
+
+        break;
+      }
+      case "onPretty": textarea.value = pluginMessage.markup; break;
+    }
+  })
+
+  parent.postMessage({ pluginMessage: { type: "getSelection" } }, "*")
+
+</script> -->

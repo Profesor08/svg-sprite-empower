@@ -1,0 +1,10 @@
+{
+  "name": "Svg Sprite Empower",
+  "id": "1210268390758084662",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": ["figma"],
+  "ui": "ui.html"
+}
