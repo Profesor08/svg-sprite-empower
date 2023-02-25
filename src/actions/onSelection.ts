@@ -2,7 +2,6 @@ import debounce from "lodash/debounce";
 
 export const onSelection = debounce(
   async () => {
-    console.log("onSelection");
     const entries = await Promise.all(
       figma.currentPage.selection.map(async (node) => {
         const bytes = await node.exportAsync({
