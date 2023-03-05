@@ -3,23 +3,37 @@
   "version": "1.0.0",
   "description": "Your Figma Plugin",
   "main": "dist/code.js",
+  "type": "module",
   "scripts": {
-    "dev": "npm run build -- --watch",
-    "prebuild": "rimraf dist",
-    "build": "esbuild src/code.ts --outdir=dist --bundle"
+    "dev": "rollup -c rollup.config.js --watch",
+    "build": "rollup -c rollup.config.js",
+    "dev:es": "npm run build -- --watch",
+    "build:es": "esbuild src/plugin/plugin.ts --outdir=dist/js --bundle"
   },
   "author": "",
   "license": "",
   "devDependencies": {
     "@figma/plugin-typings": "*",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-html": "^1.0.2",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-replace": "^5.0.2",
+    "@rollup/plugin-typescript": "^11.0.0",
     "@types/lodash": "^4.14.191",
     "@types/pretty": "^2.0.1",
-    "esbuild": "^0.17.10",
-    "rimraf": "^4.1.2",
-    "typescript": "*"
+    "esbuild": "^0.17.11",
+    "rimraf": "^4.3.0",
+    "rollup": "^3.18.0",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "amd-loader": "^0.0.8",
     "lodash": "^4.17.21",
-    "pretty": "^2.0.0"
+    "pretty": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tslib": "^2.5.0"
   }
 }

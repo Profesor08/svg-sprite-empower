@@ -2,7 +2,7 @@ import debounce from "lodash/debounce";
 
 export const onSelection = debounce(
   async () => {
-    const entries = await Promise.all(
+    const entries: Icon[] = await Promise.all(
       figma.currentPage.selection.map(async (node) => {
         const bytes = await node.exportAsync({
           format: "SVG",
