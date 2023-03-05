@@ -5,6 +5,7 @@ import typescript from "@rollup/plugin-typescript";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import replace from "@rollup/plugin-replace";
+import terser from "@rollup/plugin-terser";
 
 const clean = (dir) => {
   return {
@@ -20,7 +21,7 @@ const html = () => {
   return {
     name: "html",
 
-    closeBundle: async (...args) => {
+    closeBundle: async () => {
       const html = fs.readFileSync("./index.html");
       const script = fs.readFileSync("./dist/js/ui.js");
 
@@ -37,12 +38,14 @@ const config = defineConfig(() => {
 
   return {
     input: ["src/plugin/plugin.ts", "src/ui/ui.tsx"],
+
     output: {
       dir: dir,
       format: "esm",
 
       entryFileNames: "js/[name].js",
     },
+
     plugins: [
       clean(dir),
       commonjs(),
@@ -50,8 +53,11 @@ const config = defineConfig(() => {
       typescript(),
       html(),
       replace({
-        "process.env.NODE_ENV": JSON.stringify("production"),
+        "process.env.NODE_ENV": JSON.stringify(process.env.BUILD),
         preventAssignment: true,
+      }),
+      terser({
+        compress: process.env.BUILD === "production",
       }),
     ],
   };
