@@ -1,8 +1,8 @@
 import { onClose } from "./actions/onClose";
-import { save, load } from "./actions/config";
-import { onPretty } from "./actions/onPretty";
+import { save } from "./actions/config";
 import { onSelection } from "./actions/onSelection";
 import { onResize } from "./actions/onResize";
+import { getConfig } from "./actions/getConfig";
 
 const init = async () => {
   // This shows the HTML page in "ui.html".
@@ -17,33 +17,23 @@ const init = async () => {
   figma.ui.on("message", async (msg) => {
     switch (msg.type) {
       case "close":
-        onClose();
-        break;
+        return onClose();
+
       case "getSelection":
-        onSelection();
-        break;
-      case "onPretty":
-        onPretty(msg.markup);
-        break;
+        return onSelection();
+
       case "onConfig":
-        save(msg.config);
-        break;
+        return save(msg.config);
+
+      case "getConfig":
+        return getConfig();
+
       case "onResize":
-        onResize(300, msg.height);
-        break;
+        return onResize(300, msg.height);
     }
   });
 
   figma.on("selectionchange", onSelection);
-
-  const config = await load();
-
-  if (config !== undefined) {
-    figma.ui.postMessage({
-      type: "onConfig",
-      config: config,
-    });
-  }
 
   onResize(300, 350);
 };
