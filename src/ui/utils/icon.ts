@@ -14,6 +14,38 @@ const overrideColor = (symbol: SVGSymbolElement, color: string) => {
   });
 };
 
+function* colorLoop(items: string[]): Generator<string> {
+  while (true) {
+    for (let index = 0; index < items.length; index++) {
+      yield items[index].replace("${n}", (index + 1).toString());
+    }
+  }
+}
+
+const overrideColorMultiple = (
+  symbol: SVGSymbolElement,
+  colorsInput: string
+) => {
+  const colors = colorsInput
+    .split(/[,:\s]/)
+    .map((color) => color.trim())
+    .filter((color) => color.length > 0);
+
+  const pickColor = colorLoop(colors);
+
+  symbol.querySelectorAll("[stroke]").forEach((entry) => {
+    if (entry.getAttribute("stroke") !== "none") {
+      entry.setAttribute("stroke", pickColor.next().value);
+    }
+  });
+
+  symbol.querySelectorAll("[fill]").forEach((entry) => {
+    if (entry.getAttribute("fill") !== "none") {
+      entry.setAttribute("fill", pickColor.next().value);
+    }
+  });
+};
+
 const removeColor = (symbol: SVGSymbolElement) => {
   symbol.querySelectorAll("[stroke]").forEach((entry) => {
     if (entry.getAttribute("stroke") !== "none") {
@@ -50,11 +82,14 @@ export const icon = (icon: Icon, config: IConfig) => {
     case "currentColor":
       overrideColor(symbol, "currentColor");
       break;
-    case "remove":
-      removeColor(symbol);
-      break;
     case "override":
       overrideColor(symbol, config.colorOverride);
+      break;
+    case "multiple":
+      overrideColorMultiple(symbol, config.colorMultiple);
+      break;
+    case "remove":
+      removeColor(symbol);
       break;
   }
 

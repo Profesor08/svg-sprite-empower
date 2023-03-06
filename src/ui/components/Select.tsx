@@ -18,7 +18,7 @@ export const Select = () => {
       <select value={config.color} onChange={onChange}>
         <option value="currentColor">currentColor</option>
         <option value="override">override</option>
-        {/* <option value="multiple">multiple</option> */}
+        <option value="multiple">multiple</option>
         <option value="initial">initial</option>
         <option value="remove">remove</option>
       </select>
