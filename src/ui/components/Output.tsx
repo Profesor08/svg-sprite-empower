@@ -15,7 +15,7 @@ export const Output = () => {
       <Header title="Selection">
         <button onClick={onCopy}>Copy</button>
       </Header>
-      <textarea rows={10} value={value}></textarea>
+      <textarea rows={10} value={value} readOnly></textarea>
     </section>
   );
 };
