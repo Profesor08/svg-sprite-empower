@@ -17,7 +17,7 @@ export const ColorOverride = () => {
     <>
       {config.color === "override" && (
         <input
-          type="input"
+          type="text"
           placeholder="#000000"
           value={config.colorOverride}
           onChange={onChange}

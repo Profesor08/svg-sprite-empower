@@ -8,6 +8,7 @@ import { Output } from "./components/Output";
 import { Select } from "./components/Select";
 import { Context, createConfig } from "./hooks/useConfig";
 import { useResize } from "./hooks/useResize";
+import { styles } from "./styles";
 
 const App = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -54,6 +55,8 @@ const App = () => {
     </Context.Provider>
   );
 };
+
+styles();
 
 const root = createRoot(app);
 
