@@ -15,6 +15,7 @@ interface IConfig {
   color: IColorType;
   colorOverride: string;
   colorMultiple: string;
+  colorMultipleLoop: boolean;
 }
 
 type IFigmaPluginMessage =

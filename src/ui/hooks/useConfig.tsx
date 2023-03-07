@@ -12,6 +12,7 @@ export const Context = createContext<IContext>({
   color: "currentColor",
   colorOverride: "#000000",
   colorMultiple: "",
+  colorMultipleLoop: true,
   update: () => {},
 });
 
@@ -20,6 +21,7 @@ export const createConfig = () => {
     color: "currentColor",
     colorOverride: "#000000",
     colorMultiple: "",
+    colorMultipleLoop: true,
   });
 
   const update = useCallback(
