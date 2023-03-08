@@ -1,14 +1,17 @@
 import { useCallback, useRef } from "react";
 import { createRoot } from "react-dom/client";
-import { updateWindowSize } from "./api/api";
-import { ColorMultiple } from "./components/ColorMultiple";
-import { ColorOverride } from "./components/ColorOverride";
-import { Header } from "./components/Header";
-import { Output } from "./components/Output";
-import { Select } from "./components/Select";
-import { Context, createConfig } from "./hooks/useConfig";
-import { useResize } from "./hooks/useResize";
-import { styles } from "./styles";
+import { updateWindowSize } from "api/api";
+import { ColorMultiple } from "components/ColorMultiple";
+import { ColorOverride } from "components/ColorOverride";
+import { Header } from "components/layout/Header";
+import { Output } from "components/Output";
+import { Section } from "components/layout/Section";
+import { Select } from "components/form/Select";
+import { Context, createConfig } from "hooks/useConfig";
+import { useResize } from "hooks/useResize";
+import { Footer } from "components/layout/Footer";
+import { Line } from "components/layout/Line";
+import "./styles";
 
 const App = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -28,9 +31,9 @@ const App = () => {
         <main>
           <Output />
 
-          <hr />
+          <Line />
 
-          <section>
+          <Section>
             <Header title="Color" />
 
             <Select />
@@ -38,25 +41,16 @@ const App = () => {
             <ColorOverride />
 
             <ColorMultiple />
-          </section>
+          </Section>
         </main>
 
-        <hr />
+        <Line />
 
-        <footer>
-          <span>
-            Developed by:{" "}
-            <a href="https://github.com/Profesor08" target="_blank">
-              Profesor08
-            </a>
-          </span>
-        </footer>
+        <Footer />
       </div>
     </Context.Provider>
   );
 };
-
-styles();
 
 const root = createRoot(app);
 

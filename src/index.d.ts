@@ -65,3 +65,20 @@ interface Icon {
   height: number;
   svg: string;
 }
+
+type Component<
+  T extends {} = {},
+  K extends keyof JSX.IntrinsicElements = "div",
+  S = JSX.IntrinsicElements[K]
+> = FC<S & T>;
+
+declare namespace UI {
+  type Div<T extends {} = {}> = Component<T, "div">;
+  type Span<T extends {} = {}> = Component<T, "span">;
+  type Link<T extends {} = {}> = Component<T, "a">;
+  type Image<T extends {} = {}> = Component<T, "img">;
+  type Button<T extends {} = {}> = Component<T, "button">;
+  type Input<T extends {} = {}> = Component<T, "input">;
+  type Textarea<T extends {} = {}> = Component<T, "textarea">;
+  type Section<T extends {} = {}> = Component<T, "section">;
+}

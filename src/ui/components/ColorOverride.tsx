@@ -1,5 +1,6 @@
-import { useConfig } from "../hooks/useConfig";
+import { useConfig } from "hooks/useConfig";
 import { useCallback } from "react";
+import { Input } from "form/Input";
 
 export const ColorOverride = () => {
   const config = useConfig();
@@ -16,7 +17,7 @@ export const ColorOverride = () => {
   return (
     <>
       {config.color === "override" && (
-        <input
+        <Input
           type="text"
           placeholder="#000000"
           value={config.colorOverride}

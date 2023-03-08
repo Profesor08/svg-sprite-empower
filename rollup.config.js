@@ -6,6 +6,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import replace from "@rollup/plugin-replace";
 import terser from "@rollup/plugin-terser";
+import { typescriptPaths } from "rollup-plugin-typescript-paths";
 
 const clean = (dir) => {
   return {
@@ -51,6 +52,7 @@ const config = defineConfig(() => {
       commonjs(),
       nodeResolve(),
       typescript(),
+      typescriptPaths(),
       html(),
       replace({
         "process.env.NODE_ENV": JSON.stringify(process.env.BUILD),
