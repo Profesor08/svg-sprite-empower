@@ -1,6 +1,7 @@
 import { useCallback } from "react";
-import { useConfig } from "../hooks/useConfig";
-import { Switch } from "./Switch";
+import { useConfig } from "hooks/useConfig";
+import { Switch } from "form/Switch";
+import { Textarea } from "form/Textarea";
 
 export const ColorMultiple = () => {
   const config = useConfig();
@@ -32,12 +33,12 @@ export const ColorMultiple = () => {
             onChange={onLoopChange}
             label="Loop colors"
           />
-          <textarea
+          <Textarea
             rows={7}
             placeholder="#1e1e1e, --bg-color, --color-${n}"
             value={config.colorMultiple}
             onChange={onChange}
-          ></textarea>
+          ></Textarea>
         </>
       )}
     </>

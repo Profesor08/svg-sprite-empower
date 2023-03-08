@@ -1,4 +1,4 @@
-import { icon } from "./icon";
+import { icon } from "utils/icon";
 
 export const sprite = (icons: Icon[], config: IConfig) => {
   if (icons.length === 0) {

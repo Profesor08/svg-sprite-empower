@@ -1,10 +1,20 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "ESNext",
     "module": "ESNext",
     "outDir": "dist",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "jsx": "react-jsx",
+    "baseUrl": "./src/",
+    "paths": {
+      "api/*": ["ui/api/*"],
+      "utils/*": ["ui/utils/*"],
+      "hooks/*": ["ui/hooks/*"],
+      "styles/*": ["ui/styles/*"],
+      "components/*": ["ui/components/*"],
+      "layout/*": ["ui/components/layout/*"],
+      "form/*": ["ui/components/form/*"]
+    },
     "strict": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

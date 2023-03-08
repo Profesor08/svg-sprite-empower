@@ -1,7 +1,9 @@
 import { useCallback } from "react";
-import { useSelection } from "../hooks/useSelection";
-import { copy } from "../utils/copy";
-import { Header } from "./Header";
+import { useSelection } from "hooks/useSelection";
+import { copy } from "utils/copy";
+import { Button } from "components/layout/Button";
+import { Header } from "layout/Header";
+import { Textarea } from "form/Textarea";
 
 export const Output = () => {
   const value = useSelection();
@@ -13,9 +15,9 @@ export const Output = () => {
   return (
     <section>
       <Header title="Selection">
-        <button onClick={onCopy}>Copy</button>
+        <Button onClick={onCopy}>Copy</Button>
       </Header>
-      <textarea rows={10} value={value} readOnly></textarea>
+      <Textarea rows={10} value={value} readOnly></Textarea>
     </section>
   );
 };

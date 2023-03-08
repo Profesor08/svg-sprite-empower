@@ -35,5 +35,5 @@ export const css = (
 
   sheet.replaceSync(parse(strings, ...interpolations));
 
-  document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+  document.adoptedStyleSheets.push(sheet);
 };

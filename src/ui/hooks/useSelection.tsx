@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import pretty from "pretty";
-import { sprite } from "../utils/sprite";
-import { getFigmaSelection } from "../api/api";
-import { useConfig } from "./useConfig";
+import { sprite } from "utils/sprite";
+import { getFigmaSelection } from "api/api";
+import { useConfig } from "hooks/useConfig";
 
 export const useSelection = (): string => {
   const [markup, setMarkup] = useState("");

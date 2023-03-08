@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { getConfig, updateConfig } from "../api/api";
+import { getConfig, updateConfig } from "api/api";
 
 export const Context = createContext<IContext>({
   color: "currentColor",
