@@ -6,6 +6,7 @@ This Figma plugin makes it easy to create svg sprites based on selection.
 
 - Automatic sprite generation based on selection
 - Availability to change colors
+- Apply different colors or `css` variables
 
 ## Example
 
