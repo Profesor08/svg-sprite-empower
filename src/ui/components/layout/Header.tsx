@@ -12,14 +12,9 @@ css`
   }
 `;
 
-interface IHeader {
-  title: string;
-}
-
-export const Header: FC<IHeader> = ({ title, children }) => {
+export const Header: FC = ({ children }) => {
   return (
     <div className="header">
-      <Title>{title}</Title>
       {children}
     </div>
   );

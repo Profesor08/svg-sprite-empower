@@ -1,23 +1,26 @@
 import { useCallback } from "react";
-import { useSelection } from "hooks/useSelection";
+import { useMarkup } from "hooks/useMarkup";
 import { copy } from "utils/copy";
 import { Button } from "components/layout/Button";
 import { Header } from "layout/Header";
 import { Textarea } from "form/Textarea";
+import { Section } from "./layout/Section";
+import { Title } from "./layout/Title";
 
 export const Output = () => {
-  const value = useSelection();
+  const value = useMarkup();
 
   const onCopy = useCallback(() => {
     copy(value);
   }, [value]);
 
   return (
-    <section>
-      <Header title="Selection">
+    <Section>
+      <Header>
+        <Title>Selection</Title>
         <Button onClick={onCopy}>Copy</Button>
       </Header>
       <Textarea rows={10} value={value} readOnly></Textarea>
-    </section>
+    </Section>
   );
 };

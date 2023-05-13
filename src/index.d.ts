@@ -11,11 +11,19 @@ type IColorType =
   | "override"
   | "multiple";
 
+type TemplateType = "html" | "svg" | "react" | "pug";
+
+type IUserTemplates = {
+  [key in TemplateType]: string;
+};
+
 interface IConfig {
   color: IColorType;
   colorOverride: string;
   colorMultiple: string;
   colorMultipleLoop: boolean;
+  selectedTemplate: TemplateType;
+  templates: IUserTemplates;
 }
 
 type IFigmaPluginMessage =
@@ -58,7 +66,7 @@ declare const figma: CustomPluginAPI;
 
 declare const app: HTMLDivElement;
 
-interface Icon {
+type Icon = {
   id: string;
   name: string;
   width: number;
@@ -66,11 +74,17 @@ interface Icon {
   svg: string;
 }
 
+type ComponentAttr<
+  T extends {} = {},
+  K extends keyof JSX.IntrinsicElements = "div",
+  S = JSX.IntrinsicElements[K]
+> = Omit<S, keyof T> & T;
+
 type Component<
   T extends {} = {},
   K extends keyof JSX.IntrinsicElements = "div",
   S = JSX.IntrinsicElements[K]
-> = FC<S & T>;
+> = FC<ComponentAttr<T, K, S>>;
 
 declare namespace UI {
   type Div<T extends {} = {}> = Component<T, "div">;

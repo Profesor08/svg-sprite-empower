@@ -12,6 +12,9 @@ import { useResize } from "hooks/useResize";
 import { Footer } from "components/layout/Footer";
 import { Line } from "components/layout/Line";
 import "./styles";
+import { Tabs, TabList, Tab, TabPanel } from "components/layout/Tabs";
+import { Templates } from "components/Templates";
+import { Title } from "components/layout/Title";
 
 const App = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,19 +32,34 @@ const App = () => {
     <Context.Provider value={context}>
       <div ref={ref}>
         <main>
-          <Output />
+          <Tabs>
+            <TabList>
+              <Tab>Selection</Tab>
+              <Tab>Templates</Tab>
+            </TabList>
 
-          <Line />
+            <TabPanel>
+              <Output />
 
-          <Section>
-            <Header title="Color" />
+              <Line />
 
-            <Select />
+              <Section>
+                <Header>
+                  <Title>Color</Title>
+                </Header>
 
-            <ColorOverride />
+                <Select />
 
-            <ColorMultiple />
-          </Section>
+                <ColorOverride />
+
+                <ColorMultiple />
+              </Section>
+            </TabPanel>
+
+            <TabPanel>
+              <Templates />
+            </TabPanel>
+          </Tabs>
         </main>
 
         <Line />

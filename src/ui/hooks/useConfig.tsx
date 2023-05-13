@@ -7,12 +7,32 @@ import {
   useState,
 } from "react";
 import { getConfig, updateConfig } from "api/api";
+import pretty from "pretty";
+
+const html = pretty(`
+  <svg width="{width}" height="{height}" viewBox="0 0 {width} {height}">
+    <use href="icons.svg#{name}"></use>
+  </svg>
+`);
+
+const svg = `{svg}`;
+
+const react = `<Icon name="{name}" width="{width}" height="{height}" />`;
+
+const pug = `+icon({name: "dashboard_24px", width: {width}, height: {height}})`;
 
 export const Context = createContext<IContext>({
   color: "currentColor",
   colorOverride: "#000000",
   colorMultiple: "",
   colorMultipleLoop: true,
+  selectedTemplate: "html",
+  templates: {
+    html,
+    svg,
+    react,
+    pug,
+  },
   update: () => {},
 });
 
@@ -22,6 +42,13 @@ export const createConfig = () => {
     colorOverride: "#000000",
     colorMultiple: "",
     colorMultipleLoop: true,
+    selectedTemplate: "html",
+    templates: {
+      html,
+      svg,
+      react,
+      pug,
+    },
   });
 
   const update = useCallback(
@@ -42,7 +69,16 @@ export const createConfig = () => {
   useEffect(() => {
     const callback = ({ data: { pluginMessage } }: IFigmaMessageEvent) => {
       if (pluginMessage.type === "getConfig") {
-        setState((state) => ({ ...state, ...pluginMessage.config }));
+        setState((state) => {
+          return {
+            ...state,
+            ...pluginMessage.config,
+            templates: {
+              ...state.templates,
+              ...pluginMessage.config.templates,
+            },
+          };
+        });
       }
     };
 
