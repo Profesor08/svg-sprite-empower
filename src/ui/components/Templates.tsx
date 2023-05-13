@@ -84,7 +84,7 @@ export const Templates = () => {
           </TabList>
           <Button onClick={onCopy}>Copy</Button>
         </Header>
-        <Textarea rows={20} value={output} readOnly></Textarea>
+        <Textarea rows={15} value={output} readOnly></Textarea>
       </Section>
       <Section>
         <Header>
