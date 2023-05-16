@@ -1,3 +1,5 @@
+![Try it](https://static.figma.com/app/icon/1/favicon.svg) [Try It](https://www.figma.com/community/plugin/1210268390758084662/Svg-Sprite-Empower)
+
 # Svg Sprite Empower
 
 This Figma plugin makes it easy to create svg sprites based on selection.
