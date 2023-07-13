@@ -5,6 +5,6 @@
   "main": "dist/js/plugin.js",
   "capabilities": ["panel"],
   "enableProposedApi": false,
-  "editorType": ["figma", "dev", "inspect"],
+  "editorType": ["figma", "dev"],
   "ui": "dist/index.html"
 }
