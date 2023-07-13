@@ -3,8 +3,8 @@
   "id": "1210268390758084662",
   "api": "1.0.0",
   "main": "dist/js/plugin.js",
-  "capabilities": [],
+  "capabilities": ["panel"],
   "enableProposedApi": false,
-  "editorType": ["figma"],
+  "editorType": ["figma", "dev", "inspect"],
   "ui": "dist/index.html"
 }
