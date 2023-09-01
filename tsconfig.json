@@ -1,10 +1,7 @@
 {
+  "extends": "@create-figma-plugin/tsconfig",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "outDir": "dist",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "jsx": "react-jsx",
+    "typeRoots": ["node_modules/@figma", "node_modules/@types"],
     "baseUrl": "./src/",
     "paths": {
       "api/*": ["ui/api/*"],
@@ -14,10 +11,7 @@
       "components/*": ["ui/components/*"],
       "layout/*": ["ui/components/layout/*"],
       "form/*": ["ui/components/form/*"]
-    },
-    "strict": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "typeRoots": ["./node_modules/@types", "./node_modules/@figma"]
-  }
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

@@ -1,10 +1,14 @@
 {
-  "name": "Svg Sprite Empower",
-  "id": "1210268390758084662",
   "api": "1.0.0",
-  "main": "dist/js/plugin.js",
-  "capabilities": ["panel"],
-  "enableProposedApi": false,
-  "editorType": ["figma", "dev"],
-  "ui": "dist/index.html"
+  "editorType": [
+    "figma",
+    "dev"
+  ],
+  "id": "1210268390758084662",
+  "name": "Svg Sprite Empower",
+  "main": "build/main.js",
+  "ui": "build/ui.js",
+  "capabilities": [
+    "panel"
+  ]
 }

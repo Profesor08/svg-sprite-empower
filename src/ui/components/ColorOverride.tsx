@@ -1,29 +1,31 @@
+import { Textbox } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { useCallback } from "react";
-import { Input } from "form/Input";
+import { JSX, h } from "preact";
+import { useCallback } from "preact/hooks";
 
 export const ColorOverride = () => {
-  const config = useConfig();
+  const config = useConfig((state) => state.config);
+  const setConfig = useConfig((state) => state.setConfig);
 
-  const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback(
+  const onChange: JSX.GenericEventHandler<HTMLInputElement> = useCallback(
     (event) => {
-      config.update({
+      setConfig({
         colorOverride: event.currentTarget.value,
       });
     },
-    []
+    [setConfig]
   );
 
+  if (config.color !== "override") {
+    return null;
+  }
+
   return (
-    <>
-      {config.color === "override" && (
-        <Input
-          type="text"
-          placeholder="#000000"
-          value={config.colorOverride}
-          onChange={onChange}
-        />
-      )}
-    </>
+    <Textbox
+      placeholder="#000000"
+      value={config.colorOverride}
+      onChange={onChange}
+      variant="border"
+    />
   );
 };

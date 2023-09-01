@@ -1,41 +1,92 @@
-import { onClose } from "./actions/onClose";
-import { save } from "./actions/config";
-import { onSelection } from "./actions/onSelection";
-import { onResize } from "./actions/onResize";
-import { getConfig } from "./actions/getConfig";
+import { emit, on, once, showUI } from "@create-figma-plugin/utilities";
+import debounce from "lodash/debounce";
 
-const init = async () => {
-  // This shows the HTML page in "ui.html".
-  figma.showUI(__html__, {
-    themeColors: true,
+export default async function () {
+  showUI({
+    width: 300,
+    height: 350,
   });
 
-  // Calls to "parent.postMessage" from within the HTML page will trigger this
-  // callback. The callback will be passed the "pluginMessage" property of the
-  // posted message.
-
-  figma.ui.on("message", async (msg) => {
-    switch (msg.type) {
-      case "close":
-        return onClose();
-
-      case "getSelection":
-        return onSelection();
-
-      case "onConfig":
-        return save(msg.config);
-
-      case "getConfig":
-        return getConfig();
-
-      case "onResize":
-        return onResize(300, msg.height);
-    }
+  once<Api.CloseHandler>("CLOSE", () => {
+    figma.closePlugin();
   });
 
-  figma.on("selectionchange", onSelection);
+  on<Api.ResizeHandler>("RESIZE", (width, height) => {
+    figma.ui.resize(width, height);
+  });
 
-  onResize(300, 350);
+  on<Api.SetConfigHandler>("SET_CONFIG", (config) => {
+    setClientConfig(config);
+  });
+
+  figma.on(
+    "selectionchange",
+    debounce(provideCurrentSelection, 500, {
+      trailing: true,
+      leading: true,
+      maxWait: 500,
+    })
+  );
+
+  provideConfig();
+  provideCurrentSelection();
+}
+
+const provideConfig = async () => {
+  const config = await getClientConfig();
+
+  if (config !== undefined) {
+    emit<Api.GetConfigHandler>("GET_CONFIG", config);
+  }
 };
 
-init();
+const provideCurrentSelection = async () => {
+  const entries = await getSelection();
+
+  emit<Api.SelectionHandler>("SELECTION", entries);
+};
+
+const getClientConfig = async (): Promise<App.Config | undefined> => {
+  const data = await figma.clientStorage.getAsync("svg-sprite-empower-config");
+
+  if (typeof data === "string") {
+    return JSON.parse(data);
+  }
+
+  return undefined;
+};
+
+const setClientConfig = async (config: App.Config) => {
+  await figma.clientStorage.setAsync(
+    "svg-sprite-empower-config",
+    JSON.stringify(config)
+  );
+};
+
+const getSelection = async (): Promise<App.Icon[]> => {
+  return await Promise.all(
+    figma.currentPage.selection.map(async (node) => {
+      const bytes = await node.exportAsync({
+        format: "SVG",
+        contentsOnly: true,
+        suffix: "",
+        svgIdAttribute: false,
+        svgOutlineText: true,
+        svgSimplifyStroke: true,
+      });
+
+      const svg = bytes.reduce(
+        (str, byte) => str + String.fromCharCode(byte),
+        ""
+      );
+
+      return {
+        id: node.id,
+        name: node.name,
+        width: node.width,
+        height: node.height,
+        svg,
+      };
+    })
+  );
+};

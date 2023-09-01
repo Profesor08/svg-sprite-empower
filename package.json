@@ -1,39 +1,35 @@
 {
-  "name": "svg-sprite-empower",
-  "version": "1.1.2",
-  "description": "Your Figma Plugin",
-  "main": "dist/code.js",
-  "type": "module",
-  "scripts": {
-    "dev": "rollup -c rollup.config.js --environment BUILD:development --watch",
-    "build": "rollup -c rollup.config.js --environment BUILD:production"
+  "figma-plugin": {
+    "name": "Svg Sprite Empower",
+    "id": "1210268390758084662",
+    "editorType": [
+      "figma",
+      "dev"
+    ],
+    "capabilities": [
+      "panel"
+    ],
+    "main": "src/plugin/plugin.ts",
+    "ui": "src/ui/ui.tsx"
   },
-  "author": "",
-  "license": "",
-  "devDependencies": {
-    "@figma/plugin-typings": "*",
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-replace": "^5.0.2",
-    "@rollup/plugin-terser": "^0.4.0",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "@types/lodash": "^4.14.191",
-    "@types/pretty": "^2.0.1",
-    "@types/react-is": "^18.2.0",
-    "rimraf": "^4.3.0",
-    "rollup": "^3.18.0",
-    "rollup-plugin-typescript-paths": "^1.4.0",
-    "tslib": "^2.5.0",
-    "typescript": "^4.9.5"
+  "scripts": {
+    "build": "build-figma-plugin --typecheck --minify",
+    "dev": "build-figma-plugin --typecheck --watch"
   },
   "dependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "amd-loader": "^0.0.8",
-    "classnames": "^2.3.2",
+    "@create-figma-plugin/ui": "^2.6.1",
+    "@create-figma-plugin/utilities": "^2.6.1",
     "lodash": "^4.17.21",
+    "preact": "^10.17.1",
     "pretty": "^2.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "zustand": "^4.4.1"
+  },
+  "devDependencies": {
+    "@create-figma-plugin/build": "^2.6.1",
+    "@create-figma-plugin/tsconfig": "^2.6.1",
+    "@figma/plugin-typings": "^1.76.0",
+    "@types/lodash": "^4.14.197",
+    "@types/pretty": "^2.0.1",
+    "typescript": "^5.2.2"
   }
 }

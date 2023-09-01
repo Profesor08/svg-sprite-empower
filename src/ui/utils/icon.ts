@@ -68,7 +68,7 @@ const removeColor = (symbol: SVGSymbolElement) => {
   removeSymbolColor(symbol, "fill");
 };
 
-export const icon = (icon: Icon, config: IConfig) => {
+export const icon = (icon: App.Icon, config: App.Config) => {
   root.innerHTML = icon.svg;
 
   const svg = root.firstChild as SVGSVGElement;

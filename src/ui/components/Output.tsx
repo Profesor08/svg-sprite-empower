@@ -1,26 +1,49 @@
-import { useCallback } from "react";
+import {
+  Bold,
+  Link,
+  Stack,
+  Text,
+  TextboxMultiline,
+} from "@create-figma-plugin/ui";
 import { useMarkup } from "hooks/useMarkup";
+import { h } from "preact";
+import { useCallback } from "preact/hooks";
 import { copy } from "utils/copy";
-import { Button } from "components/layout/Button";
-import { Header } from "layout/Header";
-import { Textarea } from "form/Textarea";
-import { Section } from "./layout/Section";
-import { Title } from "./layout/Title";
+import { Grid } from "./Grid";
 
 export const Output = () => {
   const value = useMarkup();
 
-  const onCopy = useCallback(() => {
-    copy(value);
-  }, [value]);
+  const onCopy = useCallback(
+    (event: Event) => {
+      copy(value);
+      event.preventDefault();
+    },
+    [value]
+  );
 
   return (
-    <Section>
-      <Header>
-        <Title>Selection</Title>
-        <Button onClick={onCopy}>Copy</Button>
-      </Header>
-      <Textarea rows={10} value={value} readOnly></Textarea>
-    </Section>
+    <Stack space="extraSmall">
+      <Grid>
+        <Text>
+          <Bold>Selection</Bold>
+        </Text>
+        <Text>
+          <Link href="#" onClick={onCopy}>
+            <Bold>Copy</Bold>
+          </Link>
+        </Text>
+      </Grid>
+
+      <TextboxMultiline
+        rows={10}
+        value={value}
+        variant="border"
+        readOnly
+        style={{
+          whiteSpace: "pre",
+        }}
+      />
+    </Stack>
   );
 };
