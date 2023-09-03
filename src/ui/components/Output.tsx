@@ -19,7 +19,7 @@ export const Output = () => {
 
   return (
     <Stack space="extraSmall">
-      <Grid>
+      <Grid columns="1fr auto" height={24}>
         <Text>
           <Bold>Selection</Bold>
         </Text>

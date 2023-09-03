@@ -41,6 +41,13 @@ declare namespace App {
     templates: {
       [key in Template.Type]: string;
     };
+    attributes: {
+      id: boolean;
+      height: boolean;
+      width: boolean;
+      viewBox: boolean;
+      fill: boolean;
+    };
   }
 
   namespace Color {

@@ -5,6 +5,7 @@ import {
   Stack,
   Text,
 } from "@create-figma-plugin/ui";
+import { Attributes } from "components/Attributes";
 import { ColorMode } from "components/ColorMode";
 import { ColorMultiple } from "components/ColorMultiple";
 import { ColorOverride } from "components/ColorOverride";
@@ -53,6 +54,8 @@ export const Content = () => {
           <ColorOverride />
 
           <ColorMultiple />
+
+          <Attributes />
         </Stack>
       )}
 
