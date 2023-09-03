@@ -15,6 +15,7 @@
   "scripts": {
     "build": "build-figma-plugin --typecheck --minify",
     "dev": "build-figma-plugin --typecheck --watch",
+    "typecheck": "npx tsc --noEmit --skipLibCheck true",
     "lint": "npx eslint ."
   },
   "dependencies": {
