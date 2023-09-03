@@ -1,4 +1,8 @@
 {
+  "name": "svg-sprite-empower",
+  "version": "2.0.0",
+  "description": "Your Figma Plugin",
+  "author": "Profesor08",
   "figma-plugin": {
     "name": "Svg Sprite Empower",
     "id": "1210268390758084662",
