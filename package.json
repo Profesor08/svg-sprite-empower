@@ -1,7 +1,7 @@
 {
   "name": "svg-sprite-empower",
   "version": "2.0.0",
-  "description": "Your Figma Plugin",
+  "description": "This Figma plugin makes it easy to create svg sprites based on selection",
   "author": "Profesor08",
   "figma-plugin": {
     "name": "Svg Sprite Empower",
