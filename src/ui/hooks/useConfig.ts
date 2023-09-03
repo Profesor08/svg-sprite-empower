@@ -35,8 +35,8 @@ export const useConfig = create<UseConfigStore>((set, get) => ({
     },
     attributes: {
       id: true,
-      width: true,
-      height: true,
+      width: false,
+      height: false,
       viewBox: true,
       fill: true,
     },

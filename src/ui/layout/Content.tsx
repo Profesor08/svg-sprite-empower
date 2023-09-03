@@ -9,6 +9,7 @@ import { Attributes } from "components/Attributes";
 import { ColorMode } from "components/ColorMode";
 import { ColorMultiple } from "components/ColorMultiple";
 import { ColorOverride } from "components/ColorOverride";
+import { Help } from "components/Help";
 import { Output } from "components/Output";
 import { Templates } from "components/Templates";
 import { h } from "preact";
@@ -22,10 +23,12 @@ export const Content = () => {
     {
       value: "Templates",
     },
+    {
+      value: "Help",
+    },
   ];
 
-  const [value, setValue] =
-    useState<SegmentedControlOption["value"]>("Selection");
+  const [value, setValue] = useState<SegmentedControlOption["value"]>("Help");
 
   const onChange = useCallback((value: string) => {
     const newValue = value;
@@ -60,6 +63,8 @@ export const Content = () => {
       )}
 
       {value === "Templates" && <Templates />}
+
+      {value === "Help" && <Help />}
     </Stack>
   );
 };

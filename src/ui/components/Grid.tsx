@@ -4,7 +4,6 @@ import { useMemo } from "preact/hooks";
 
 const gridStyle: JSX.CSSProperties = {
   display: "grid",
-  justifyContent: "space-between",
   alignItems: "center",
 };
 
