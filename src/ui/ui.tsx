@@ -1,4 +1,5 @@
 import "!./styles/global.css";
+import "!./styles/highlight.css";
 import "!./styles/scrollbar.css";
 import {
   Container,

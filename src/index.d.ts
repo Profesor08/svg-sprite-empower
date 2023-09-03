@@ -2,6 +2,14 @@ interface Window {
   ["create-figma-plugin"]: HTMLElement;
 }
 
+type FC<P = {}> = import("preact").FunctionComponent<P>;
+
+type Component<P = {}> = FC<
+  {
+    children?: import("preact").ComponentChildren;
+  } & P
+>;
+
 declare namespace Api {
   type EventHandler = import("@create-figma-plugin/utilities").EventHandler;
 
