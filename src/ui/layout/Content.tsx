@@ -28,7 +28,8 @@ export const Content = () => {
     },
   ];
 
-  const [value, setValue] = useState<SegmentedControlOption["value"]>("Help");
+  const [value, setValue] =
+    useState<SegmentedControlOption["value"]>("Selection");
 
   const onChange = useCallback((value: string) => {
     const newValue = value;
