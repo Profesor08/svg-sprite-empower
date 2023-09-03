@@ -2,7 +2,7 @@ import { useEffect } from "preact/hooks";
 
 export const useResize = (
   target: HTMLElement,
-  callback: (width: number, height: number) => void
+  callback: (width: number, height: number) => void,
 ) => {
   useEffect(() => {
     const observer = new ResizeObserver(() => {
@@ -18,5 +18,5 @@ export const useResize = (
         observer.unobserve(target);
       }
     };
-  }, [callback]);
+  }, [callback, target]);
 };

@@ -53,7 +53,7 @@ on<Api.GetConfigHandler>("GET_CONFIG", (config) => {
 
 const configSetter = (
   state: App.Config,
-  config: Partial<App.Config>
+  config: Partial<App.Config>,
 ): App.Config => {
   return {
     ...state,

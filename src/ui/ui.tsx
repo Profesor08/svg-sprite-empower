@@ -22,7 +22,7 @@ function Plugin() {
       const scrollGlitch = 0;
 
       emit<Api.ResizeHandler>("RESIZE", 300, height + scrollGlitch);
-    }, [])
+    }, []),
   );
 
   return (

@@ -1,15 +1,10 @@
-import {
-  Bold,
-  Link,
-  Stack,
-  Text,
-  TextboxMultiline,
-} from "@create-figma-plugin/ui";
+import { Bold, Link, Stack, Text } from "@create-figma-plugin/ui";
 import { useMarkup } from "hooks/useMarkup";
 import { h } from "preact";
 import { useCallback } from "preact/hooks";
 import { copy } from "utils/copy";
 import { Grid } from "./Grid";
+import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 
 export const Output = () => {
   const value = useMarkup();
@@ -19,7 +14,7 @@ export const Output = () => {
       copy(value);
       event.preventDefault();
     },
-    [value]
+    [value],
   );
 
   return (

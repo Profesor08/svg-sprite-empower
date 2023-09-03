@@ -1,7 +1,8 @@
-import { Stack, Text, TextboxMultiline, Toggle } from "@create-figma-plugin/ui";
+import { Stack, Text, Toggle } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
 import { JSX, h } from "preact";
 import { useCallback } from "preact/hooks";
+import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 
 export const ColorMultiple = () => {
   const config = useConfig((state) => state.config);
@@ -13,7 +14,7 @@ export const ColorMultiple = () => {
         colorMultiple: event.currentTarget.value,
       });
     },
-    [setConfig]
+    [setConfig],
   );
 
   const onLoopChange = useCallback(
@@ -22,7 +23,7 @@ export const ColorMultiple = () => {
         colorMultipleLoop: value,
       });
     },
-    [setConfig]
+    [setConfig],
   );
 
   if (config.color !== "multiple") {

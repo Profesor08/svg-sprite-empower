@@ -13,7 +13,7 @@ export const ColorMode = () => {
         color: event.currentTarget.value as App.Color.Type,
       });
     },
-    [setConfig]
+    [setConfig],
   );
 
   const options = useMemo(() => {

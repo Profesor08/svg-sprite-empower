@@ -7,7 +7,6 @@ import {
   SegmentedControl,
   Stack,
   Text,
-  TextboxMultiline,
 } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
 import { useIcons } from "hooks/useIcons";
@@ -15,6 +14,7 @@ import { JSX, h } from "preact";
 import { useCallback, useMemo } from "preact/hooks";
 import pretty from "pretty";
 import { copy } from "utils/copy";
+import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 
 const build = (icons: App.Icon[], template: string) => {
   return icons
@@ -23,10 +23,10 @@ const build = (icons: App.Icon[], template: string) => {
         .reduce((template, [key, value]) => {
           return template.replace(
             new RegExp(`{${key}}`, "g"),
-            value.toString()
+            value.toString(),
           );
         }, template)
-        .trim()
+        .trim(),
     )
     .join("\n\n");
 };
@@ -51,7 +51,7 @@ const tabs: {
 export const Templates = () => {
   const icons = useIcons((state) => state.icons);
   const { templates, selectedTemplate: type } = useConfig(
-    (state) => state.config
+    (state) => state.config,
   );
   const setConfig = useConfig((state) => state.setConfig);
 
@@ -73,7 +73,7 @@ export const Templates = () => {
       event.preventDefault();
       copy(output);
     },
-    [output]
+    [output],
   );
 
   const setType = useCallback(
@@ -82,7 +82,7 @@ export const Templates = () => {
         selectedTemplate: type,
       });
     },
-    [setConfig]
+    [setConfig],
   );
 
   const onTemplateUpdateHandler: JSX.GenericEventHandler<HTMLTextAreaElement> =
@@ -95,7 +95,7 @@ export const Templates = () => {
           },
         });
       },
-      [setConfig, templates, type]
+      [setConfig, templates, type],
     );
 
   return (

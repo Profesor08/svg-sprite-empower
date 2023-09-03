@@ -25,7 +25,7 @@ export default async function () {
       trailing: true,
       leading: true,
       maxWait: 500,
-    })
+    }),
   );
 
   provideConfig();
@@ -59,7 +59,7 @@ const getClientConfig = async (): Promise<App.Config | undefined> => {
 const setClientConfig = async (config: App.Config) => {
   await figma.clientStorage.setAsync(
     "svg-sprite-empower-config",
-    JSON.stringify(config)
+    JSON.stringify(config),
   );
 };
 
@@ -77,7 +77,7 @@ const getSelection = async (): Promise<App.Icon[]> => {
 
       const svg = bytes.reduce(
         (str, byte) => str + String.fromCharCode(byte),
-        ""
+        "",
       );
 
       return {
@@ -87,6 +87,6 @@ const getSelection = async (): Promise<App.Icon[]> => {
         height: node.height,
         svg,
       };
-    })
+    }),
   );
 };

@@ -13,7 +13,7 @@ export const ColorOverride = () => {
         colorOverride: event.currentTarget.value,
       });
     },
-    [setConfig]
+    [setConfig],
   );
 
   if (config.color !== "override") {
