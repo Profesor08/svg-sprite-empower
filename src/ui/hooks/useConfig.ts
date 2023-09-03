@@ -17,6 +17,7 @@ const pug = `+icon({name: "dashboard_24px", width: {width}, height: {height}})`;
 interface UseConfigStore {
   config: App.Config;
   setConfig(config: Partial<App.Config>): void;
+  setAttributes(attributes: Partial<App.Config["attributes"]>): void;
 }
 
 export const useConfig = create<UseConfigStore>((set, get) => ({
@@ -32,6 +33,13 @@ export const useConfig = create<UseConfigStore>((set, get) => ({
       react,
       pug,
     },
+    attributes: {
+      id: true,
+      width: true,
+      height: true,
+      viewBox: true,
+      fill: true,
+    },
   },
   setConfig: (config) => {
     const state = get().config;
@@ -40,8 +48,17 @@ export const useConfig = create<UseConfigStore>((set, get) => ({
     set({
       config: newConfig,
     });
-
-    emit<Api.SetConfigHandler>("SET_CONFIG", newConfig);
+  },
+  setAttributes: (attributes) => {
+    set((state) => ({
+      config: {
+        ...state.config,
+        attributes: {
+          ...state.config.attributes,
+          ...attributes,
+        },
+      },
+    }));
   },
 }));
 
@@ -49,6 +66,10 @@ on<Api.GetConfigHandler>("GET_CONFIG", (config) => {
   useConfig.setState((state) => ({
     config: configSetter(state.config, config),
   }));
+});
+
+useConfig.subscribe((state) => {
+  emit<Api.SetConfigHandler>("SET_CONFIG", state.config);
 });
 
 const configSetter = (
@@ -61,6 +82,10 @@ const configSetter = (
     templates: {
       ...state.templates,
       ...config.templates,
+    },
+    attributes: {
+      ...state.attributes,
+      ...config.attributes,
     },
   };
 };

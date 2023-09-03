@@ -1,6 +1,5 @@
 import {
   Bold,
-  Columns,
   Link,
   MiddleAlign,
   Muted,
@@ -14,6 +13,7 @@ import { JSX, h } from "preact";
 import { useCallback, useMemo } from "preact/hooks";
 import pretty from "pretty";
 import { copy } from "utils/copy";
+import { Grid } from "./Grid";
 import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 
 const build = (icons: App.Icon[], template: string) => {
@@ -101,7 +101,7 @@ export const Templates = () => {
   return (
     <Stack space="medium">
       <Stack space="extraSmall">
-        <Columns space="medium">
+        <Grid columns="1fr auto">
           <SegmentedControl
             onValueChange={setType}
             options={tabs}
@@ -114,7 +114,7 @@ export const Templates = () => {
               </Link>
             </Text>
           </MiddleAlign>
-        </Columns>
+        </Grid>
 
         <TextboxMultiline
           rows={12}
