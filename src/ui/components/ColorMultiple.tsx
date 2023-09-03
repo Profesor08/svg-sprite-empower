@@ -1,46 +1,51 @@
-import { useCallback } from "react";
+import { Stack, Text, Toggle } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { Switch } from "form/Switch";
-import { Textarea } from "form/Textarea";
+import { JSX, h } from "preact";
+import { useCallback } from "preact/hooks";
+import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 
 export const ColorMultiple = () => {
-  const config = useConfig();
+  const config = useConfig((state) => state.config);
+  const setConfig = useConfig((state) => state.setConfig);
 
-  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
+  const onChange: JSX.GenericEventHandler<HTMLTextAreaElement> = useCallback(
     (event) => {
-      config.update({
+      setConfig({
         colorMultiple: event.currentTarget.value,
       });
     },
-    [config]
+    [setConfig],
   );
 
   const onLoopChange = useCallback(
     (value: boolean) => {
-      config.update({
+      setConfig({
         colorMultipleLoop: value,
       });
     },
-    [config]
+    [setConfig],
   );
 
+  if (config.color !== "multiple") {
+    return null;
+  }
+
   return (
-    <>
-      {config.color === "multiple" && (
-        <>
-          <Switch
-            checked={config.colorMultipleLoop}
-            onChange={onLoopChange}
-            label="Loop colors"
-          />
-          <Textarea
-            rows={7}
-            placeholder="#1e1e1e, --bg-color, --color-${n}"
-            value={config.colorMultiple}
-            onChange={onChange}
-          ></Textarea>
-        </>
-      )}
-    </>
+    <Stack space="small">
+      <Toggle onValueChange={onLoopChange} value={config.colorMultipleLoop}>
+        <Text>Loop colors</Text>
+      </Toggle>
+
+      <TextboxMultiline
+        placeholder="#1e1e1e, --bg-color, --color-${n}"
+        value={config.colorMultiple}
+        onChange={onChange}
+        rows={5}
+        variant="border"
+        style={{
+          whiteSpace: "pre",
+        }}
+      />
+    </Stack>
   );
 };

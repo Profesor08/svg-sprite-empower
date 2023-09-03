@@ -1,6 +1,6 @@
 import { icon } from "utils/icon";
 
-export const sprite = (icons: Icon[], config: IConfig) => {
+export const sprite = (icons: App.Icon[], config: App.Config) => {
   if (icons.length === 0) {
     return "";
   }

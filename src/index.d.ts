@@ -1,98 +1,61 @@
-type FC<P = unknown> = React.FC<React.PropsWithChildren<P>>;
-
-interface IContext extends IConfig {
-  update: (config: Partial<IConfig>) => void;
+interface Window {
+  ["create-figma-plugin"]: HTMLElement;
 }
 
-type IColorType =
-  | "currentColor"
-  | "initial"
-  | "remove"
-  | "override"
-  | "multiple";
+declare namespace Api {
+  type EventHandler = import("@create-figma-plugin/utilities").EventHandler;
 
-type TemplateType = "html" | "svg" | "react" | "pug";
+  interface CloseHandler extends EventHandler {
+    name: "CLOSE";
+    handler: () => void;
+  }
 
-type IUserTemplates = {
-  [key in TemplateType]: string;
-};
+  interface ResizeHandler extends EventHandler {
+    name: "RESIZE";
+    handler: (width: number, height: number) => void;
+  }
 
-interface IConfig {
-  color: IColorType;
-  colorOverride: string;
-  colorMultiple: string;
-  colorMultipleLoop: boolean;
-  selectedTemplate: TemplateType;
-  templates: IUserTemplates;
+  interface GetConfigHandler extends EventHandler {
+    name: "GET_CONFIG";
+    handler: (config: App.Config) => void;
+  }
+
+  interface SetConfigHandler extends EventHandler {
+    name: "SET_CONFIG";
+    handler: (config: App.Config) => void;
+  }
+
+  interface SelectionHandler extends EventHandler {
+    name: "SELECTION";
+    handler: (entries: App.Icon[]) => void;
+  }
 }
 
-type IFigmaPluginMessage =
-  | {
-      type: "selectionChange";
-      entries: Icon[];
-    }
-  | {
-      type: "onPretty";
-      markup: string;
-    }
-  | {
-      type: "getConfig";
-      config: IConfig;
+declare namespace App {
+  interface Config {
+    color: Color.Type;
+    colorOverride: string;
+    colorMultiple: string;
+    colorMultipleLoop: boolean;
+    selectedTemplate: Template.Type;
+    templates: {
+      [key in Template.Type]: string;
     };
+  }
 
-interface IFigmaMessageData {
-  pluginMessage: IFigmaPluginMessage;
-}
+  namespace Color {
+    type Type = "currentColor" | "initial" | "remove" | "override" | "multiple";
+  }
 
-interface IFigmaMessageEvent extends MessageEvent<IFigmaMessageData> {}
+  namespace Template {
+    type Type = "html" | "svg" | "react" | "pug";
+  }
 
-interface WindowEventMap {
-  message: IFigmaMessageEvent;
-}
-
-interface CustomUIAPI extends Omit<UIAPI, "postMessage"> {
-  postMessage(
-    pluginMessage: IFigmaPluginMessage,
-    options?: UIPostMessageOptions
-  ): void;
-}
-
-interface CustomPluginAPI extends Omit<PluginAPI, "ui"> {
-  ui: CustomUIAPI;
-}
-
-// @ts-ignore
-declare const figma: CustomPluginAPI;
-
-declare const app: HTMLDivElement;
-
-type Icon = {
-  id: string;
-  name: string;
-  width: number;
-  height: number;
-  svg: string;
-}
-
-type ComponentAttr<
-  T extends {} = {},
-  K extends keyof JSX.IntrinsicElements = "div",
-  S = JSX.IntrinsicElements[K]
-> = Omit<S, keyof T> & T;
-
-type Component<
-  T extends {} = {},
-  K extends keyof JSX.IntrinsicElements = "div",
-  S = JSX.IntrinsicElements[K]
-> = FC<ComponentAttr<T, K, S>>;
-
-declare namespace UI {
-  type Div<T extends {} = {}> = Component<T, "div">;
-  type Span<T extends {} = {}> = Component<T, "span">;
-  type Link<T extends {} = {}> = Component<T, "a">;
-  type Image<T extends {} = {}> = Component<T, "img">;
-  type Button<T extends {} = {}> = Component<T, "button">;
-  type Input<T extends {} = {}> = Component<T, "input">;
-  type Textarea<T extends {} = {}> = Component<T, "textarea">;
-  type Section<T extends {} = {}> = Component<T, "section">;
+  interface Icon {
+    id: string;
+    name: string;
+    width: number;
+    height: number;
+    svg: string;
+  }
 }

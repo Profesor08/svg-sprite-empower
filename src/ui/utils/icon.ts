@@ -3,7 +3,7 @@ const root = document.createElement("div");
 const overrideSymbolColor = (
   symbol: SVGSymbolElement,
   attribute: "stroke" | "fill",
-  colorGetter: () => string | null
+  colorGetter: () => string | null,
 ) => {
   symbol.querySelectorAll(`[${attribute}]`).forEach((entry) => {
     if (entry.getAttribute(attribute) !== "none") {
@@ -18,7 +18,7 @@ const overrideSymbolColor = (
 
 const removeSymbolColor = (
   symbol: SVGSymbolElement,
-  attribute: "stroke" | "fill"
+  attribute: "stroke" | "fill",
 ) => {
   symbol.querySelectorAll(`[${attribute}]`).forEach((entry) => {
     if (entry.getAttribute(attribute) !== "none") {
@@ -29,7 +29,7 @@ const removeSymbolColor = (
 
 const overrideColor = (
   symbol: SVGSymbolElement,
-  colorGetter: () => string | null
+  colorGetter: () => string | null,
 ) => {
   overrideSymbolColor(symbol, "stroke", colorGetter);
   overrideSymbolColor(symbol, "fill", colorGetter);
@@ -37,7 +37,7 @@ const overrideColor = (
 
 function* colorLoop(
   items: string[],
-  loop: boolean = false
+  loop: boolean = false,
 ): Generator<string, null> {
   do {
     for (let index = 0; index < items.length; index++) {
@@ -51,7 +51,7 @@ function* colorLoop(
 const overrideColorMultiple = (
   symbol: SVGSymbolElement,
   colorsInput: string,
-  loop: boolean = false
+  loop: boolean = false,
 ) => {
   const colors = colorsInput
     .split(/[,:\s]/)
@@ -68,14 +68,14 @@ const removeColor = (symbol: SVGSymbolElement) => {
   removeSymbolColor(symbol, "fill");
 };
 
-export const icon = (icon: Icon, config: IConfig) => {
+export const icon = (icon: App.Icon, config: App.Config) => {
   root.innerHTML = icon.svg;
 
   const svg = root.firstChild as SVGSVGElement;
 
   const symbol = document.createElementNS(
     "http://www.w3.org/2000/svg",
-    "symbol"
+    "symbol",
   );
 
   symbol.setAttribute("id", icon.name);
@@ -97,7 +97,7 @@ export const icon = (icon: Icon, config: IConfig) => {
       overrideColorMultiple(
         symbol,
         config.colorMultiple,
-        config.colorMultipleLoop
+        config.colorMultipleLoop,
       );
       break;
     case "remove":

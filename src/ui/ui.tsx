@@ -1,75 +1,40 @@
-import { useCallback, useRef } from "react";
-import { createRoot } from "react-dom/client";
-import { updateWindowSize } from "api/api";
-import { ColorMultiple } from "components/ColorMultiple";
-import { ColorOverride } from "components/ColorOverride";
-import { Header } from "components/layout/Header";
-import { Output } from "components/Output";
-import { Section } from "components/layout/Section";
-import { Select } from "components/form/Select";
-import { Context, createConfig } from "hooks/useConfig";
+import "!./styles/global.css";
+import "!./styles/scrollbar.css";
+import {
+  Container,
+  Stack,
+  VerticalSpace,
+  render,
+} from "@create-figma-plugin/ui";
+import { emit } from "@create-figma-plugin/utilities";
 import { useResize } from "hooks/useResize";
-import { Footer } from "components/layout/Footer";
-import { Line } from "components/layout/Line";
-import "./styles";
-import { Tabs, TabList, Tab, TabPanel } from "components/layout/Tabs";
-import { Templates } from "components/Templates";
-import { Title } from "components/layout/Title";
+import { h } from "preact";
+import { useCallback, useRef } from "preact/hooks";
+import { Content } from "./layout/Content";
+import { Footer } from "./layout/Footer";
 
-const App = () => {
+function Plugin() {
   const ref = useRef<HTMLDivElement>(null);
 
-  const context = createConfig();
-
   useResize(
-    ref,
-    useCallback(() => {
-      updateWindowSize();
-    }, [])
+    window["create-figma-plugin"],
+    useCallback((width, height) => {
+      const scrollGlitch = 0;
+
+      emit<Api.ResizeHandler>("RESIZE", 300, height + scrollGlitch);
+    }, []),
   );
 
   return (
-    <Context.Provider value={context}>
-      <div ref={ref}>
-        <main>
-          <Tabs>
-            <TabList>
-              <Tab>Selection</Tab>
-              <Tab>Templates</Tab>
-            </TabList>
-
-            <TabPanel>
-              <Output />
-
-              <Line />
-
-              <Section>
-                <Header>
-                  <Title>Color</Title>
-                </Header>
-
-                <Select />
-
-                <ColorOverride />
-
-                <ColorMultiple />
-              </Section>
-            </TabPanel>
-
-            <TabPanel>
-              <Templates />
-            </TabPanel>
-          </Tabs>
-        </main>
-
-        <Line />
-
+    <Container ref={ref} space="medium">
+      <VerticalSpace space="extraSmall" />
+      <Stack space="medium">
+        <Content />
         <Footer />
-      </div>
-    </Context.Provider>
+      </Stack>
+      <VerticalSpace space="medium" />
+    </Container>
   );
-};
+}
 
-const root = createRoot(app);
-
-root.render(<App />);
+export default render(Plugin);

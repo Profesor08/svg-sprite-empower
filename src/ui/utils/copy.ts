@@ -9,7 +9,7 @@ export const copy = (text: string) => {
 
   area.select();
 
-  const result = document.execCommand("copy");
+  document.execCommand("copy");
 
   document.body.removeChild(area);
 };
