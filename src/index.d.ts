@@ -35,7 +35,7 @@ declare namespace Api {
 
   interface SelectionHandler extends EventHandler {
     name: "SELECTION";
-    handler: (entries: App.Icon[]) => void;
+    handler: (entries: App.Selection[]) => void;
   }
 }
 
@@ -56,6 +56,7 @@ declare namespace App {
       viewBox: boolean;
       fill: boolean;
     };
+    sizeLimit: number;
   }
 
   namespace Color {
@@ -66,11 +67,20 @@ declare namespace App {
     type Type = "html" | "svg" | "react" | "pug";
   }
 
+  interface Selection {
+    id: string;
+    name: string;
+    width: number;
+    height: number;
+    bytes: Uint8Array;
+  }
+
   interface Icon {
     id: string;
     name: string;
     width: number;
     height: number;
+    size: number;
     svg: string;
   }
 }

@@ -40,6 +40,7 @@ export const useConfig = create<UseConfigStore>((set, get) => ({
       viewBox: true,
       fill: true,
     },
+    sizeLimit: 4,
   },
   setConfig: (config) => {
     const state = get().config;

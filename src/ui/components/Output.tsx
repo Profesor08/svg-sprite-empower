@@ -1,27 +1,39 @@
-import { Bold, Link, Stack, Text } from "@create-figma-plugin/ui";
-import { useMarkup } from "hooks/useMarkup";
+import { Bold, Link, Muted, Stack, Text } from "@create-figma-plugin/ui";
+import { useIcons } from "hooks/useIcons";
 import { h } from "preact";
 import { useCallback } from "preact/hooks";
 import { copy } from "utils/copy";
 import { Grid } from "./Grid";
 import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 
+const byteValueNumberFormatter = Intl.NumberFormat("en", {
+  notation: "compact",
+  style: "unit",
+  unit: "byte",
+  unitDisplay: "narrow",
+});
+
 export const Output = () => {
-  const value = useMarkup();
+  const { markup, size } = useIcons();
 
   const onCopy = useCallback(
     (event: Event) => {
-      copy(value);
+      copy(markup);
       event.preventDefault();
     },
-    [value],
+    [markup],
   );
 
   return (
     <Stack space="extraSmall">
-      <Grid columns="1fr auto" height={24}>
+      <Grid columns="1fr auto auto" height={24} gap={12}>
         <Text>
           <Bold>Selection</Bold>
+        </Text>
+        <Text>
+          <Muted>
+            <small>size: {byteValueNumberFormatter.format(size)}</small>
+          </Muted>
         </Text>
         <Text>
           <Link href="#" onClick={onCopy}>
@@ -32,7 +44,7 @@ export const Output = () => {
 
       <TextboxMultiline
         rows={10}
-        value={value}
+        value={markup}
         variant="border"
         readOnly
         style={{

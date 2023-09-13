@@ -63,8 +63,8 @@ const setClientConfig = async (config: App.Config) => {
   );
 };
 
-const getSelection = async (): Promise<App.Icon[]> => {
-  return await Promise.all(
+const getSelection = async (): Promise<App.Selection[]> => {
+  const selection = await Promise.all(
     figma.currentPage.selection.map(async (node) => {
       const bytes = await node.exportAsync({
         format: "SVG",
@@ -75,18 +75,15 @@ const getSelection = async (): Promise<App.Icon[]> => {
         svgSimplifyStroke: true,
       });
 
-      const svg = bytes.reduce(
-        (str, byte) => str + String.fromCharCode(byte),
-        "",
-      );
-
       return {
         id: node.id,
         name: node.name,
         width: node.width,
         height: node.height,
-        svg,
+        bytes,
       };
     }),
   );
+
+  return selection;
 };
