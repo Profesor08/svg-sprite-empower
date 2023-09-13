@@ -1,21 +1,15 @@
-import { Checkbox, Disclosure, Stack, Text } from "@create-figma-plugin/ui";
+import { Bold, Checkbox, Stack, Text } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { JSX, h } from "preact";
-import { useCallback, useState } from "preact/hooks";
+import { h } from "preact";
+import { useCallback } from "preact/hooks";
 import { Grid } from "./Grid";
 
 export const Attributes = () => {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const onOpen: JSX.MouseEventHandler<HTMLInputElement> = useCallback(
-    (event) => {
-      setOpen(event?.currentTarget.checked);
-    },
-    [],
-  );
-
   return (
-    <Disclosure onClick={onOpen} open={open} title="Attributes">
+    <Stack space="small">
+      <Text>
+        <Bold>Attributes</Bold>
+      </Text>
       <Stack space="medium">
         <Grid columns="1fr 1fr 1fr">
           <Attribute name="width" />
@@ -27,7 +21,7 @@ export const Attributes = () => {
           <Attribute name="fill" />
         </Grid>
       </Stack>
-    </Disclosure>
+    </Stack>
   );
 };
 

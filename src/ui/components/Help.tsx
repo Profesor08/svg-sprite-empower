@@ -22,6 +22,7 @@ export const Help = () => {
     <Grid>
       <QuickStartHelp />
       <WarningHelp />
+      <ImagesHelp />
       <SvgAttributesHelp />
       <SymbolAttributesHelp />
       <ColorsHelp />
@@ -103,6 +104,30 @@ const WarningHelp = () => {
         </Text>
         <Text>
           If you need all this complex things, just create an separate svg file.
+        </Text>
+      </Stack>
+    </Section>
+  );
+};
+
+const ImagesHelp = () => {
+  return (
+    <Section title="Images">
+      <Stack space="small">
+        <Text>
+          <Bold>Raster images</Bold> makes huge impact on performance, because
+          they are converted into <Bold>base64</Bold> strings. Plugin can freeze
+          for long time while trying to display the result into{" "}
+          <Html code={"<textarea />"} />.
+        </Text>
+        <Text>
+          <Bold>Render Error</Bold> mean that you have run in size limit. But
+          you have posibility just to <Bold>copy</Bold> generated markup, if you
+          need it.
+        </Text>
+        <Text>
+          Some times, you can make an unexpected click. So, for protection
+          reason, an config was added, where you can set desired size limit.
         </Text>
       </Stack>
     </Section>

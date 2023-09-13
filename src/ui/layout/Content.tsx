@@ -5,10 +5,10 @@ import {
   Stack,
   Text,
 } from "@create-figma-plugin/ui";
-import { Attributes } from "components/Attributes";
 import { ColorMode } from "components/ColorMode";
 import { ColorMultiple } from "components/ColorMultiple";
 import { ColorOverride } from "components/ColorOverride";
+import { Config } from "components/Config";
 import { Help } from "components/Help";
 import { Output } from "components/Output";
 import { Templates } from "components/Templates";
@@ -59,7 +59,7 @@ export const Content = () => {
 
           <ColorMultiple />
 
-          <Attributes />
+          <Config />
         </Stack>
       )}
 
