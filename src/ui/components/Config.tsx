@@ -6,7 +6,7 @@ import {
   Text,
 } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { JSX, h } from "preact";
+import { JSX } from "preact";
 import { useCallback, useState } from "preact/hooks";
 import { Attributes } from "./Attributes";
 import { Grid } from "./Grid";

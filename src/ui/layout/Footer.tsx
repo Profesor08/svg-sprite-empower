@@ -1,5 +1,4 @@
 import { Divider, Link, Muted, Stack, Text } from "@create-figma-plugin/ui";
-import { h } from "preact";
 
 export const Footer = () => {
   return (

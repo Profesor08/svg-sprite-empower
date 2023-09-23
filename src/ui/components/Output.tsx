@@ -1,6 +1,5 @@
 import { Bold, Link, Muted, Stack, Text } from "@create-figma-plugin/ui";
 import { useIcons } from "hooks/useIcons";
-import { h } from "preact";
 import { useCallback } from "preact/hooks";
 import { copy } from "utils/copy";
 import { Grid } from "./Grid";

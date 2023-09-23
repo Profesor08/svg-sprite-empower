@@ -12,7 +12,6 @@ import { Config } from "components/Config";
 import { Help } from "components/Help";
 import { Output } from "components/Output";
 import { Templates } from "components/Templates";
-import { h } from "preact";
 import { useCallback, useState } from "preact/hooks";
 
 export const Content = () => {

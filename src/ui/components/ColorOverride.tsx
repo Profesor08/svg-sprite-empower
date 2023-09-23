@@ -1,6 +1,6 @@
 import { Textbox } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { JSX, h } from "preact";
+import { JSX } from "preact";
 import { useCallback } from "preact/hooks";
 
 export const ColorOverride = () => {

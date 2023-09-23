@@ -1,5 +1,5 @@
 import { Props } from "@create-figma-plugin/ui";
-import { ComponentChildren, JSX, h } from "preact";
+import { ComponentChildren, JSX } from "preact";
 import { useMemo } from "preact/hooks";
 
 const gridStyle: JSX.CSSProperties = {

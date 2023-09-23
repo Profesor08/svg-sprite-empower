@@ -5,7 +5,7 @@ import {
 } from "@create-figma-plugin/ui";
 import { MIXED_STRING } from "@create-figma-plugin/utilities";
 import clsx from "clsx";
-import { JSX, RefObject, h } from "preact";
+import { JSX, RefObject } from "preact";
 import { useCallback, useRef, useState } from "preact/hooks";
 import styles from "./textbox-multiline.module.css";
 

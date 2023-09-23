@@ -1,6 +1,5 @@
 import { Bold, Checkbox, Stack, Text } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { h } from "preact";
 import { useCallback } from "preact/hooks";
 import { Grid } from "./Grid";
 
