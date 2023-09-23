@@ -9,7 +9,7 @@ import {
 } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
 import { useIcons } from "hooks/useIcons";
-import { JSX, h } from "preact";
+import { JSX } from "preact";
 import { useCallback, useMemo } from "preact/hooks";
 import pretty from "pretty";
 import { copy } from "utils/copy";

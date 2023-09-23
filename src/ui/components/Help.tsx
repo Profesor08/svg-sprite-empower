@@ -1,5 +1,4 @@
 import { Bold, Code, Disclosure, Stack, Text } from "@create-figma-plugin/ui";
-import { h } from "preact";
 import { useCallback } from "preact/hooks";
 import { create } from "zustand";
 import { Grid } from "./Grid";

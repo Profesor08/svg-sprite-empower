@@ -1,6 +1,6 @@
 import { Stack, Text, Toggle } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { JSX, h } from "preact";
+import { JSX } from "preact";
 import { useCallback } from "preact/hooks";
 import { TextboxMultiline } from "./textbox-multiline/TextboxMultiline";
 

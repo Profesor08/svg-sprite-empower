@@ -9,7 +9,6 @@ import {
 } from "@create-figma-plugin/ui";
 import { emit } from "@create-figma-plugin/utilities";
 import { useResize } from "hooks/useResize";
-import { h } from "preact";
 import { useCallback, useRef } from "preact/hooks";
 import { Content } from "./layout/Content";
 import { Footer } from "./layout/Footer";

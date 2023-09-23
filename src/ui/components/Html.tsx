@@ -1,4 +1,3 @@
-import { h } from "preact";
 import { html } from "utils/highlight";
 
 export const Html: FC<{

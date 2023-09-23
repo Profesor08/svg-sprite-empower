@@ -1,6 +1,6 @@
 import { Dropdown } from "@create-figma-plugin/ui";
 import { useConfig } from "hooks/useConfig";
-import { JSX, h } from "preact";
+import { JSX } from "preact";
 import { useCallback, useMemo } from "preact/hooks";
 
 export const ColorMode = () => {

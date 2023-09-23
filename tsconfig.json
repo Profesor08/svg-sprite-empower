@@ -1,6 +1,10 @@
 {
-  "extends": "@create-figma-plugin/tsconfig",
   "compilerOptions": {
+    "module": "ES2020",
+    "moduleResolution": "Bundler",
+    "lib": ["DOM", "ES2020"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     "typeRoots": ["node_modules/@figma", "node_modules/@types"],
     "baseUrl": "./src/",
     "paths": {
@@ -22,7 +26,9 @@
     "alwaysStrict": true /* Parse in strict mode and emit "use strict" for each source file. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
-    "skipLibCheck": false /* Skip type checking of declaration files. */
+    "skipLibCheck": false /* Skip type checking of declaration files. */,
+    "esModuleInterop": true,
+    "isolatedModules": true
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "build"]
