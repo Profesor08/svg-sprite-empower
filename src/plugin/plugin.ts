@@ -61,6 +61,8 @@ const setClientConfig = async (config: App.Config) => {
     "svg-sprite-empower-config",
     JSON.stringify(config),
   );
+
+  provideCurrentSelection();
 };
 
 const getSelection = async (): Promise<App.Selection[]> => {
