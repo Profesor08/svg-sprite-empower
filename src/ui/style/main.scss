@@ -1,0 +1,93 @@
+@use "theme";
+@use "sass:math";
+
+:root {
+  --font-family: "Inter", "Helvetica", sans-serif;
+  --font-family-code: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  --font-size-11: 11px;
+  --font-weight-regular: 400;
+  --font-weight-bold: 600;
+  --line-height-16: 16px;
+
+  @each $name, $value in theme.$space {
+    --space-#{$name}: #{$value};
+    --space-half-#{$name}: #{math.div($value, 2)};
+    --radius-#{$name}: #{$value};
+    --radius-half-#{$name}: #{math.div($value, 2)};
+  }
+
+  --color-scrollbar: rgba(179, 179, 179, 0.5);
+  --color-scrollbartrackhover: rgba(179, 179, 179, 0.6);
+  --color-scrollbartrackdrag: rgba(179, 179, 179, 0.8);
+}
+
+html {
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+}
+
+body {
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: var(--figma-color-bg);
+  color: var(--figma-color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-11);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-16);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--figma-color-bg-onselected);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: var(--color-scrollbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-scrollbartrackhover);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--color-scrollbartrackdrag);
+}
+
+:focus::-webkit-scrollbar-thumb {
+  background-color: var(--figma-color-bg-brand);
+}
+
+:focus::-webkit-scrollbar-thumb:hover {
+  background-color: var(--figma-color-bg-brand-hover);
+}
+
+:focus::-webkit-scrollbar-thumb:active {
+  background-color: var(--figma-color-bg-brand-pressed);
+}
+
+.figma-dark {
+  color-scheme: dark;
+}

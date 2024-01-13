@@ -1,5 +1,6 @@
-import { emit, on } from "@create-figma-plugin/utilities";
+import merge from "lodash/merge";
 import pretty from "pretty";
+import { api } from "ui/api";
 import { create } from "zustand";
 
 const html = pretty(`
@@ -20,7 +21,7 @@ interface UseConfigStore {
   setAttributes(attributes: Partial<App.Config["attributes"]>): void;
 }
 
-export const useConfig = create<UseConfigStore>((set, get) => ({
+export const useConfig = create<UseConfigStore>((set) => ({
   config: {
     color: "currentColor",
     colorOverride: "#000000",
@@ -43,12 +44,9 @@ export const useConfig = create<UseConfigStore>((set, get) => ({
     sizeLimit: 4,
   },
   setConfig: (config) => {
-    const state = get().config;
-    const newConfig = configSetter(state, config);
-
-    set({
-      config: newConfig,
-    });
+    set((state) => ({
+      config: merge({}, state.config, config),
+    }));
   },
   setAttributes: (attributes) => {
     set((state) => ({
@@ -63,30 +61,12 @@ export const useConfig = create<UseConfigStore>((set, get) => ({
   },
 }));
 
-on<Api.GetConfigHandler>("GET_CONFIG", (config) => {
+api.on<Api.GetConfigHandler>("GET_CONFIG", (config) => {
   useConfig.setState((state) => ({
-    config: configSetter(state.config, config),
+    config: merge({}, state.config, config),
   }));
 });
 
 useConfig.subscribe((state) => {
-  emit<Api.SetConfigHandler>("SET_CONFIG", state.config);
+  api.emit<Api.SetConfigHandler>("SET_CONFIG", state.config);
 });
-
-const configSetter = (
-  state: App.Config,
-  config: Partial<App.Config>,
-): App.Config => {
-  return {
-    ...state,
-    ...config,
-    templates: {
-      ...state.templates,
-      ...config.templates,
-    },
-    attributes: {
-      ...state.attributes,
-      ...config.attributes,
-    },
-  };
-};
