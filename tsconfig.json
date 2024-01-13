@@ -1,21 +1,12 @@
 {
   "compilerOptions": {
+    "target": "ES2020",
     "module": "ES2020",
     "moduleResolution": "Bundler",
+    "typeRoots": ["node_modules/@figma"],
     "lib": ["DOM", "ES2020"],
     "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    "typeRoots": ["node_modules/@figma", "node_modules/@types"],
     "baseUrl": "./src/",
-    "paths": {
-      "api/*": ["ui/api/*"],
-      "utils/*": ["ui/utils/*"],
-      "hooks/*": ["ui/hooks/*"],
-      "styles/*": ["ui/styles/*"],
-      "components/*": ["ui/components/*"],
-      "layout/*": ["ui/components/layout/*"],
-      "form/*": ["ui/components/form/*"]
-    },
     "strict": true /* Enable all strict type-checking options. */,
     "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
     "strictNullChecks": true /* Enable strict null checks. */,
@@ -26,10 +17,9 @@
     "alwaysStrict": true /* Parse in strict mode and emit "use strict" for each source file. */,
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
-    "skipLibCheck": false /* Skip type checking of declaration files. */,
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
     "esModuleInterop": true,
     "isolatedModules": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "build"]
+  "exclude": ["node_modules", "dist"]
 }

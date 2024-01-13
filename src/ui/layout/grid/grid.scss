@@ -1,0 +1,22 @@
+@use "theme";
+
+.grid {
+  display: grid;
+  align-items: center;
+
+  @include theme.spacing using ($name, $value) {
+    gap: #{$value};
+  }
+
+  @each $name, $value in theme.$space {
+    &.x-#{$name} {
+      padding-left: #{$value};
+      padding-right: #{$value};
+    }
+
+    &.y-#{$name} {
+      padding-top: #{$value};
+      padding-bottom: #{$value};
+    }
+  }
+}

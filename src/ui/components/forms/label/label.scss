@@ -1,0 +1,15 @@
+@use "theme";
+
+.label {
+  justify-self: start;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr auto;
+  justify-content: start;
+  align-items: center;
+  user-select: none;
+
+  @include theme.spacing using ($name, $value) {
+    gap: #{$value};
+  }
+}

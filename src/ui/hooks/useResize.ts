@@ -1,22 +1,17 @@
-import { useEffect } from "preact/hooks";
+import { useEffect } from "react";
 
 export const useResize = (
-  target: HTMLElement,
   callback: (width: number, height: number) => void,
 ) => {
   useEffect(() => {
     const observer = new ResizeObserver(() => {
-      callback(target.clientWidth, target.clientHeight);
+      callback(root.scrollWidth, root.scrollHeight + 1);
     });
 
-    if (target !== null) {
-      observer.observe(target);
-    }
+    observer.observe(root);
 
     return () => {
-      if (target !== null) {
-        observer.unobserve(target);
-      }
+      observer.disconnect();
     };
-  }, [callback, target]);
+  }, [callback]);
 };

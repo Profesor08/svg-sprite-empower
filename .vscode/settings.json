@@ -1,10 +1,20 @@
 {
-  "json.schemas": [
-    {
-      "fileMatch": [
-        "package.json"
-      ],
-      "url": "https://yuanqing.github.io/create-figma-plugin/figma-plugin.json"
-    }
-  ]
+  "javascript.preferences.quoteStyle": "double",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.quoteStyle": "double",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "DotJoshJohnson.xml"
+  },
+  "eslint.enable": true,
+  "eslint.workingDirectories": ["src/plugin", "src/ui"]
 }

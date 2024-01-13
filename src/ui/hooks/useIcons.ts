@@ -1,6 +1,6 @@
-import { on } from "@create-figma-plugin/utilities";
 import pretty from "pretty";
-import { sprite } from "utils/sprite";
+import { api } from "ui/api";
+import { sprite } from "ui/utils/sprite";
 import { create } from "zustand";
 import { useConfig } from "./useConfig";
 
@@ -14,7 +14,7 @@ export const useIcons = create<{
   size: 0,
 }));
 
-on<Api.SelectionHandler>("SELECTION", (entries) => {
+api.on<Api.SelectionHandler>("SELECTION", (entries) => {
   const config = useConfig.getState().config;
 
   const size = entries.reduce((size, entry) => {

@@ -1,0 +1,12 @@
+{
+  "api": "1.0.0",
+  "editorType": ["figma", "dev", "figjam"],
+  "id": "1210268390758084662",
+  "name": "Svg Sprite Empower",
+  "main": "dist/plugin.js",
+  "ui": "dist/index.html",
+  "capabilities": ["inspect", "vscode"],
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
+}

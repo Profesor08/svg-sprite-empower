@@ -1,41 +1,42 @@
-interface Window {
-  ["create-figma-plugin"]: HTMLElement;
-}
-
-type FC<P = {}> = import("preact").FunctionComponent<P>;
-
-type Component<P = {}> = FC<
-  {
-    children?: import("preact").ComponentChildren;
-  } & P
->;
-
 declare namespace Api {
-  type EventHandler = import("@create-figma-plugin/utilities").EventHandler;
+  interface EventHandler {
+    name: string;
+    listener: (...args: any) => void;
+  }
+
+  type Message<Handler extends EventHandler = EventHandler> = [
+    Handler["name"],
+    ...Parameters<Handler["listener"]>,
+  ];
 
   interface CloseHandler extends EventHandler {
     name: "CLOSE";
-    handler: () => void;
+    listener: () => void;
   }
 
   interface ResizeHandler extends EventHandler {
     name: "RESIZE";
-    handler: (width: number, height: number) => void;
+    listener: (width: number, height: number) => void;
   }
 
   interface GetConfigHandler extends EventHandler {
     name: "GET_CONFIG";
-    handler: (config: App.Config) => void;
+    listener: (config: App.Config) => void;
   }
 
   interface SetConfigHandler extends EventHandler {
     name: "SET_CONFIG";
-    handler: (config: App.Config) => void;
+    listener: (config: App.Config) => void;
   }
 
   interface SelectionHandler extends EventHandler {
     name: "SELECTION";
-    handler: (entries: App.Selection[]) => void;
+    listener: (entries: App.Selection[]) => void;
+  }
+
+  interface GetEditorTypeHandler extends EventHandler {
+    name: "GET_EDITOR_TYPE";
+    listener: (editorType: "figma" | "figjam" | "dev") => void;
   }
 }
 
