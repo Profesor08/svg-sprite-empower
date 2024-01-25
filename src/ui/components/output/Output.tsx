@@ -20,9 +20,11 @@ export const Output = () => {
     <Grid space="xs">
       <Grid columns="1fr auto auto" space="md" y="xxs" align="baseline">
         <Typography.Text strong>Selection</Typography.Text>
+
         <Typography.Text type={sizeType(size)}>
           <small>size: {byteValueNumberFormatter.format(size)}</small>
         </Typography.Text>
+
         <Typography.Link strong onClick={onCopy}>
           Copy
         </Typography.Link>

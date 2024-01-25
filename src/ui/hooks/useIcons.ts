@@ -40,7 +40,20 @@ api.on<Api.SelectionHandler>("SELECTION", (entries) => {
 
   useIcons.setState({
     icons,
-    markup,
+    markup: addWhiteSpace(markup, config.whiteSpaceCount),
     size,
   });
 });
+
+const addWhiteSpace = (markup: string, whiteSpaceCount: number): string => {
+  if (whiteSpaceCount === 0) {
+    return markup;
+  }
+
+  const whiteSpace = " ".repeat(whiteSpaceCount);
+
+  return markup
+    .split("\n")
+    .map((line) => (line === "" ? line : `${whiteSpace}${line}`))
+    .join("\n");
+};
