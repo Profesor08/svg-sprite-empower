@@ -42,6 +42,8 @@ export const useConfig = create<UseConfigStore>((set) => ({
       fill: true,
     },
     sizeLimit: 4,
+    includeSvgElement: true,
+    whiteSpaceCount: 0,
   },
   setConfig: (config) => {
     set((state) => ({

@@ -11,6 +11,10 @@ export const Config = () => {
       label: <Typography.Text strong>Config</Typography.Text>,
       children: (
         <Grid space="sm">
+          <SvgMarkup />
+
+          <WhiteSpaceCount />
+
           <Attributes />
 
           <SizeLimit />
@@ -20,6 +24,34 @@ export const Config = () => {
   ];
 
   return <Collapse items={items} ghost />;
+};
+
+const SvgMarkup = () => {
+  const includeSvgElement = useConfig(
+    (state) => state.config.includeSvgElement,
+  );
+  const setConfig = useConfig((state) => state.setConfig);
+
+  const onChange = useCallback(
+    (event: CheckboxChangeEvent) => {
+      setConfig({
+        includeSvgElement: event.target.checked,
+      });
+    },
+    [setConfig],
+  );
+
+  return (
+    <Grid space="sm">
+      <Typography.Text strong>SVG markup</Typography.Text>
+
+      <Grid space="md">
+        <Checkbox onChange={onChange} checked={includeSvgElement}>
+          <Typography.Text>Include SVG element</Typography.Text>
+        </Checkbox>
+      </Grid>
+    </Grid>
+  );
 };
 
 export const Attributes = () => {
@@ -97,6 +129,44 @@ const SizeLimit = () => {
             {sizeLimit}mb
           </Typography.Text>
           <Typography.Text type="secondary">{maximum}mb</Typography.Text>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
+
+const WhiteSpaceCount = () => {
+  const whiteSpaceCount = useConfig((state) => state.config.whiteSpaceCount);
+  const setConfig = useConfig((state) => state.setConfig);
+
+  const onChange = useCallback(
+    (whiteSpaceCount: number) => {
+      setConfig({
+        whiteSpaceCount,
+      });
+    },
+    [setConfig],
+  );
+
+  return (
+    <Grid space="xxs">
+      <Typography.Text strong>White space count:</Typography.Text>
+
+      <Grid>
+        <Slider
+          value={whiteSpaceCount}
+          min={0}
+          max={50}
+          step={1}
+          onChange={onChange}
+        />
+
+        <Grid columns="auto 1fr auto">
+          <Typography.Text type="secondary">0</Typography.Text>
+          <Typography.Text style={{ textAlign: "center" }}>
+            {whiteSpaceCount}
+          </Typography.Text>
+          <Typography.Text type="secondary">50</Typography.Text>
         </Grid>
       </Grid>
     </Grid>

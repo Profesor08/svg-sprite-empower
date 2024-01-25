@@ -58,6 +58,8 @@ declare namespace App {
       fill: boolean;
     };
     sizeLimit: number;
+    includeSvgElement: boolean;
+    whiteSpaceCount: number;
   }
 
   namespace Color {
