@@ -1,14 +1,13 @@
 # Svg Sprite Empower
 
-This Figma plugin makes it easy to create svg sprites based on selection. Or to pick icons one by one and to use them in yout code.
+Create SVG icon sprites from your Figma selection. This plugin simplifies your workflow by automatically generating sprites and providing flexible options for your code.
 
 ## Features
 
-- Automatic sprite generation based on selection
-- Availability to change colors
-- Apply different colors or `css` variables
-- Create custom templates for your icons
-- Complete guide
+- Generate sprites from your selection
+- Change colors and apply CSS variables
+- Create custom icon templates
+- Detailed guide included
 
 ## Contact
 
