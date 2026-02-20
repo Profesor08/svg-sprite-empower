@@ -5,6 +5,10 @@ export const sprite = (icons: App.Icon[], config: App.Config): string => {
     return "";
   }
 
+  if (config.symbolOnly === true) {
+    return icons.map((entry) => icon(entry, config)).join(`\n\n`);
+  }
+
   const content = icons.map((entry) => icon(entry, config)).join(`\n\n  `);
 
   if (config.includeSvgElement === true) {
