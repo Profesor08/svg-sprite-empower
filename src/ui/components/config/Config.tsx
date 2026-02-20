@@ -30,22 +30,12 @@ const SvgMarkup = () => {
   const includeSvgElement = useConfig(
     (state) => state.config.includeSvgElement,
   );
-  const symbolOnly = useConfig((state) => state.config.symbolOnly);
   const setConfig = useConfig((state) => state.setConfig);
 
-  const onIncludeSvgElementChange = useCallback(
+  const onChange = useCallback(
     (event: CheckboxChangeEvent) => {
       setConfig({
         includeSvgElement: event.target.checked,
-      });
-    },
-    [setConfig],
-  );
-
-  const onSymbolOnlyChange = useCallback(
-    (event: CheckboxChangeEvent) => {
-      setConfig({
-        symbolOnly: event.target.checked,
       });
     },
     [setConfig],
@@ -56,12 +46,8 @@ const SvgMarkup = () => {
       <Typography.Text strong>SVG markup</Typography.Text>
 
       <Grid space="md">
-        <Checkbox onChange={onIncludeSvgElementChange} checked={includeSvgElement} disabled={symbolOnly}>
+        <Checkbox onChange={onChange} checked={includeSvgElement}>
           <Typography.Text>Include SVG element</Typography.Text>
-        </Checkbox>
-
-        <Checkbox onChange={onSymbolOnlyChange} checked={symbolOnly}>
-          <Typography.Text>Symbol only</Typography.Text>
         </Checkbox>
       </Grid>
     </Grid>

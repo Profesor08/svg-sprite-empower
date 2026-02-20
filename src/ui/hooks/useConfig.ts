@@ -43,7 +43,6 @@ export const useConfig = create<UseConfigStore>((set) => ({
     },
     sizeLimit: 4,
     includeSvgElement: true,
-    symbolOnly: false,
     whiteSpaceCount: 0,
   },
   setConfig: (config) => {

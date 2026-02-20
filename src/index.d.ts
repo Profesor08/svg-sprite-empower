@@ -59,7 +59,6 @@ declare namespace App {
     };
     sizeLimit: number;
     includeSvgElement: boolean;
-    symbolOnly: boolean;
     whiteSpaceCount: number;
   }
 
